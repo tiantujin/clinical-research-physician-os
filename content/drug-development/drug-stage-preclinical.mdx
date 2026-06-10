@@ -1,0 +1,69 @@
+id: drug-stage-preclinical
+
+# Preclinical：从候选药物到首次人体研究依据
+
+## 学习目标
+
+Preclinical（非临床研究）回答的是：这个候选药物是否有足够的药理学依据和安全性依据，可以在可控风险下进入人体。CRP需要读懂 pharmacology（药理）、toxicology（毒理）、pharmacokinetics（PK，药代动力学）、pharmacodynamics（PD，药效动力学）、safety pharmacology（安全药理）、Good Laboratory Practice（GLP，药物非临床研究质量管理规范）、NOAEL（No Observed Adverse Effect Level，未观察到不良反应剂量）和 MABEL（Minimal Anticipated Biological Effect Level，最小预期生物效应剂量）。
+
+## 核心逻辑
+
+非临床不是为了证明药物一定有效，而是为了建立进入人体的风险边界。Sponsor 会基于药理活性、动物暴露、安全性靶器官和可逆性，提出起始剂量、剂量递增规则、停止标准、重点监测项目和风险缓解措施。CRP在这个阶段最常见的工作是把非临床信号转化到 clinical protocol（临床试验方案）和 Investigator Brochure（IB，研究者手册）。
+
+## PK、PD与药理学
+
+PK描述“身体如何处理药物”，包括吸收、分布、代谢和排泄。PD描述“药物如何影响身体或肿瘤”，如受体占有率、通路抑制、免疫激活或肿瘤标志物变化。对于 ADC，PK要区分 total antibody（总抗体）、conjugated antibody（偶联抗体）、free payload（游离载荷）和 anti-drug antibody（ADA，抗药抗体）。对于免疫治疗，PD常包括外周免疫细胞变化、细胞因子、肿瘤组织免疫浸润和受体占有率。
+
+CRP需要关注：非临床暴露是否覆盖预期临床暴露；PK是否呈线性；是否存在 accumulation（蓄积）；PD marker是否能在人体中检测；是否需要在 Phase I 中增加 paired biopsy（配对活检）或血液转化研究。
+
+## Toxicology 与 Safety Pharmacology
+
+Toxicology 研究剂量、暴露、毒性靶器官、严重程度、可逆性和安全窗口。Safety pharmacology 重点看 vital systems（重要生命系统），通常包括心血管、中枢神经和呼吸系统。常见输出包括 dose-limiting toxicity（DLT，剂量限制性毒性）预测、human equivalent dose（HED，人等效剂量）、起始剂量和监测建议。
+
+ADC毒理有其特殊性：抗体靶点组织表达可能导致 on-target off-tumor toxicity（靶向正常组织毒性），payload可导致骨髓抑制、胃肠道毒性、肝毒性或 ILD，linker instability（连接子不稳定）可增加系统性暴露。免疫治疗毒理则可能低估人类 irAE，因为动物模型免疫系统与患者差异很大，因此临床方案必须准备免疫相关毒性管理算法。
+
+## GLP 与 IND-enabling studies
+
+GLP并不代表“所有非临床研究都必须GLP”，而是关键安全性研究需要符合 GLP，以保证数据完整性、可追溯性和监管可接受性。IND-enabling studies（支持IND的研究）通常包括重复给药毒理、安全药理、遗传毒性、生殖毒性（视适应证和人群）、毒代动力学、局部耐受性以及必要的免疫原性评估。
+
+CRP在阅读 IND package 时要看三点：第一，研究物种是否相关；第二，毒性靶器官是否可在人类监测；第三，是否有足够风险缓解措施写入方案。例如如果动物中出现肝胆毒性，临床方案应有 ALT、AST、bilirubin、alkaline phosphatase 监测频率、Hy's Law触发标准和停药规则。
+
+## NOAEL、MABEL与FIH起始剂量
+
+NOAEL是动物研究中未观察到不良反应的最高剂量，常用于计算 HED，再用安全系数得到人体起始剂量。MABEL则更保守，基于最小预期生物效应，常用于高风险生物制品、免疫激动剂或可能产生强烈生物效应的药物。TGN1412事件之后，MABEL在免疫调节药物 FIH 中特别重要。
+
+CRP需要能解释：起始剂量不是“越低越安全”那么简单。过低可能导致长期无效暴露和患者机会成本；过高可能带来不可逆毒性。合理起始剂量应结合药理活性、受体占有率、非临床毒性、暴露倍数和目标患者风险收益。
+
+## 动物实验设计
+
+动物实验设计需要考虑物种相关性、给药途径、给药周期、剂量梯度、恢复期、性别、样本量、终点和组织病理。对于肿瘤药物，efficacy model应尽量反映目标人群：TNBC ADC可使用 TROP2表达不同的 PDX 模型；IO药物需要免疫完整或人源化模型；PARP inhibitor（PARP抑制剂）需要BRCA突变或DNA修复缺陷模型。
+
+## FDA关注点与NMPA关注点
+
+FDA和NMPA都会关注起始剂量合理性、毒性靶器官、人群风险控制、非临床研究质量、CMC一致性和临床方案是否把非临床风险转化为可执行监测。NMPA/CDE在沟通交流中也会关注中国受试者风险、桥接需求、伴随诊断可及性、以及是否有充分依据在中国开展相同剂量递增策略。
+
+## 真实案例
+
+某ADC在猴毒理中出现可逆性肺泡炎，肿瘤模型显示强效。Sponsor仍希望进入TNBC FIH。CRP应建议：方案中设置基线胸部CT、排除活动性间质性肺病、规定咳嗽/呼吸困难触发影像复查、设置ILD作为 AESI（Adverse Event of Special Interest，特别关注不良事件）、建立独立安全评审、在剂量递增中缩短安全观察窗口，并在知情同意中明确肺毒性风险。
+
+## 常见错误
+
+1. 把动物无死亡理解为人体无重大风险。
+2. 只看NOAEL，不看暴露倍数和毒性靶器官。
+3. 忽视ADC游离payload暴露。
+4. 免疫治疗方案未准备irAE处理。
+5. 非临床信号没有转化为入排标准和停药标准。
+
+## 面试考点
+
+**问题：NOAEL和MABEL有什么区别？**  
+优秀回答：NOAEL来自动物毒理中未观察到不良反应的剂量，偏安全性边界；MABEL基于最小预期生物效应，偏药理活性和生物效应预测。对于高风险免疫调节药物，MABEL更适合用于保守确定FIH起始剂量。
+
+**问题：CRP如何使用非临床数据？**  
+优秀回答：我会把非临床毒性靶器官、暴露关系和可逆性转化为方案中的监测频率、入排标准、剂量调整、DLT定义和知情同意风险描述。
+
+## 小测验
+
+1. 判断题：GLP研究主要用于保证关键非临床安全性数据的监管可接受性。答案：对。
+2. 单选题：MABEL最常用于哪类情境？A 低风险维生素 B 高风险免疫激动剂 C 已上市仿制药 D 设备研究。答案：B。
+3. 判断题：ADC毒理只需要看抗体部分。答案：错，还要看linker、payload、DAR和游离载荷。
