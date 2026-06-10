@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  --bg: #f6f9fb;
+  --panel: #ffffff;
+  --ink: #16202a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 18% 8%, rgba(34, 166, 184, 0.12), transparent 28rem),
+    linear-gradient(135deg, #f7fbfd 0%, #eef6fa 48%, #f8fafb 100%);
+  color: var(--ink);
+  font-family: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+button,
+input,
+textarea {
+  font: inherit;
+}
+
+::selection {
+  background: rgba(29, 111, 186, 0.18);
+}
+
+.crp-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(29, 111, 186, 0.3) transparent;
+}
+
+.crp-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.crp-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(29, 111, 186, 0.25);
+  border-radius: 999px;
+}
+
+.knowledge-link {
+  color: #1d6fba;
+  border-bottom: 1px solid rgba(29, 111, 186, 0.3);
+  font-weight: 700;
+}
+
+.knowledge-link:hover {
+  color: #0d4f8c;
+}
+
+.term-tip {
+  cursor: help;
+  border-bottom: 1px dotted rgba(29, 111, 186, 0.55);
+  color: #1d6fba;
+  text-decoration: none;
+}
+
+.theme-dark {
+  background:
+    radial-gradient(circle at 18% 8%, rgba(34, 166, 184, 0.16), transparent 28rem),
+    linear-gradient(135deg, #101820 0%, #16202a 52%, #111827 100%);
+}
+
+.theme-dark section,
+.theme-dark aside,
+.theme-dark header,
+.theme-dark nav,
+.theme-dark table,
+.theme-dark textarea,
+.theme-dark input,
+.theme-dark .bg-white {
+  background-color: rgba(22, 32, 42, 0.96) !important;
+  color: #edf6fa;
+  border-color: rgba(232, 244, 252, 0.16);
+}
+
+.theme-dark .text-clinical-ink,
+.theme-dark .text-clinical-slate,
+.theme-dark .prose,
+.theme-dark .prose h1,
+.theme-dark .prose h2,
+.theme-dark .prose h3,
+.theme-dark .prose strong {
+  color: #f7fbfd;
+}
+
+.theme-dark .text-slate-600,
+.theme-dark .text-slate-700,
+.theme-dark .text-slate-500,
+.theme-dark .prose p,
+.theme-dark .prose li {
+  color: #c8d7e0;
+}
+
+.theme-dark .bg-slate-50,
+.theme-dark .bg-clinical-sky,
+.theme-dark .bg-clinical-mint {
+  background-color: rgba(232, 244, 252, 0.08) !important;
+}
+
+@media print {
+  body {
+    background: #fff;
+  }
+
+  aside,
+  header,
+  .crp-scrollbar,
+  button,
+  input,
+  textarea {
+    box-shadow: none !important;
+  }
+}
