@@ -731,6 +731,107 @@ const portfolioCards: KnowledgeCard[] = [
 `
 }));
 
+const drugStageCards: KnowledgeCard[] = [
+  "Drug Discovery",
+  "Preclinical",
+  "IND / CTA",
+  "Phase I",
+  "Phase II",
+  "Phase III",
+  "NDA / BLA / MAA",
+  "Post Marketing"
+].map((title) => ({
+  id: `drug-stage-${slugifyStudy(title)}`,
+  title: `${title} 完整章节`,
+  summary: `${title} 阶段的教材级学习章节：目标、文件、部门、CRP参与、Sponsor决策、失败原因和面试问法。`,
+  tags: ["Drug Development", "Textbook", title],
+  links: ["drug-lifecycle", "protocol-review", "global-regulatory"],
+  body: `
+## 学习目标
+- 系统理解 ${title} 在新药研发全流程中的位置。
+- 能说清该阶段回答的核心问题、关键文件、主要部门和CRP参与点。
+- 能从Sponsor视角判断该阶段是否应该继续推进、暂停或修改开发策略。
+`
+}));
+
+const statisticsExpansionCards: KnowledgeCard[] = [
+  {
+    id: "sample-size-masterclass",
+    title: "样本量计算专题",
+    summary: "医生能看懂的样本量专题：优效、非劣效、等效、生存终点、二分类终点、ORR、pCR、PFS、OS和RWE。",
+    tags: ["Sample Size", "Power", "Statistics", "Trial Design"],
+    links: ["power-sample-size", "alpha-beta", "survival-analysis"],
+    body: `
+## 学习目标
+- 理解样本量不是公式游戏，而是临床假设、统计错误率、事件数和可执行性的平衡。
+`
+  },
+  {
+    id: "clinical-statistics-metrics",
+    title: "统计学关注指标：CRP读数指南",
+    summary: "HR、OR、RR、ARR、NNT、Median PFS/OS、RMST、亚组、多重性和层级检验的CRP解读。",
+    tags: ["HR", "OR", "RR", "NNT", "Multiplicity"],
+    links: ["survival-analysis", "alpha-beta", "causal-methods"],
+    body: `
+## 学习目标
+- 能从CRP、Sponsor和Reviewer三个视角解读常见疗效指标。
+`
+  }
+];
+
+const crpThinkingCards: KnowledgeCard[] = [
+  {
+    id: "how-a-crp-thinks",
+    title: "How a CRP Thinks：身份转换训练",
+    summary: "同一个临床问题，患者、研究者、CRA、CRP、Sponsor、Reviewer分别如何思考。",
+    tags: ["CRP Mindset", "Sponsor", "Reviewer", "Training"],
+    links: ["protocol-review", "medical-monitor", "reviewer-benefit-risk"],
+    body: `
+## 学习目标
+- 训练医生从单个患者诊疗思维，转换为临床开发、证据生成和获益风险判断思维。
+`
+  }
+];
+
+const interviewExpandedCards: KnowledgeCard[] = [
+  {
+    id: "interview-deep-answers",
+    title: "核心面试题深度答案库",
+    summary: "为什么离开医院、AE/SAE、ITT/PP、III期设计、PFS/OS、Protocol Review等题目的高质量答案。",
+    tags: ["Interview", "Deep Answers", "CRP"],
+    links: ["why-pharma", "ae-sae-interview", "itt-pp-interview", "phase-iii-interview"],
+    body: `
+## 学习目标
+- 每道题按面试官考察点、普通回答、优秀回答、CRP回答、医生转药企回答、乳腺外科医生回答、避坑提醒和追问答案训练。
+`
+  }
+];
+
+const reviewerExpansionCards: KnowledgeCard[] = [
+  {
+    id: "think-like-fda",
+    title: "Think Like FDA：审评员思维训练",
+    summary: "从FDA视角判断批准、拒绝、限制适应证、补充资料和上市后研究。",
+    tags: ["FDA", "Reviewer Mind", "Benefit-Risk"],
+    links: ["reviewer-benefit-risk", "fda-regulatory", "endpoint-evaluation"],
+    body: `
+## 学习目标
+- 学会用疗效稳健性、安全可管理性、统计可靠性和标签边界判断项目。
+`
+  },
+  {
+    id: "think-like-nmpa",
+    title: "Think Like NMPA：CDE审评思维训练",
+    summary: "从NMPA/CDE视角判断中国人群数据、桥接、附条件批准和上市后研究要求。",
+    tags: ["NMPA", "CDE", "Reviewer Mind", "China"],
+    links: ["nmpa-cde-regulatory", "reviewer-china-data", "global-regulatory"],
+    body: `
+## 学习目标
+- 学会判断全球研究证据能否支持中国注册和中国标签。
+`
+  }
+];
+
 const commonInterview = `
 ## 面试高频问法
 - 你如何把医学判断转化为方案设计建议？
@@ -823,7 +924,8 @@ ${commonInterview}
 
 [[随机对照试验 RCT]]、[[样本量与 Power]]、[[如何评价临床终点]] 是这一步的核心工具。
 `
-      }
+      },
+      ...drugStageCards
     ]
   },
   {
@@ -1373,7 +1475,8 @@ ${commonInterview}
 - 非随机比较易受混杂和选择偏倚影响。
 - 关键变量缺失、终点定义不一致和随访不完整会削弱证据可信度。
 `
-      }
+      },
+      ...statisticsExpansionCards
     ]
   },
   {
@@ -1724,7 +1827,8 @@ ${commonInterview}
 ## 学习目标
 - 理解数据库锁定前后CRP的医学责任。
 `
-      }
+      },
+      ...crpThinkingCards
     ]
   },
   {
@@ -1846,7 +1950,8 @@ ${commonInterview}
 - 监管接受度：是否已有先例或指南支持。
 - 运营可行性：访视、影像、随访和缺失数据是否可控。
 `
-      }
+      },
+      ...interviewExpandedCards
     ]
   },
   {
@@ -2310,7 +2415,7 @@ ${commonInterview}
     number: "17",
     title: "Reviewer Mind / Think Like FDA-NMPA",
     description: "审评员视角训练：围绕Benefit-Risk判断批准、补充资料、随访、适应证和安全管理要求。",
-    cards: reviewerCases
+    cards: [...reviewerCases, ...reviewerExpansionCards]
   },
   {
     id: "medical-writing-library",
@@ -2387,7 +2492,9 @@ ${commonInterview}
         body: `
 ## 网页内阅读
 <div class="pdf-reader-shell">
+<object class="pdf-reader" data="./docs/ICH_E6R3_Step4_FinalGuideline_2025_0106.pdf" type="application/pdf">
 <iframe class="pdf-reader" title="ICH E6(R3) Step 4 Final Guideline PDF" src="./docs/ICH_E6R3_Step4_FinalGuideline_2025_0106.pdf"></iframe>
+</object>
 </div>
 
 ## 使用建议

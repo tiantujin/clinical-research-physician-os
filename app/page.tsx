@@ -600,8 +600,14 @@ function renderMarkdown(markdown: string) {
       if (line.startsWith("## ")) return `<h2>${line.slice(3)}</h2>`;
       if (line.startsWith("# ")) return `<h1>${line.slice(2)}</h1>`;
       if (line.trim().startsWith("<iframe")) return line;
+      if (line.trim().startsWith("<object")) return line;
+      if (line.trim().startsWith("</object")) return line;
+      if (line.trim().startsWith("<embed")) return line;
+      if (line.trim().startsWith("<img")) return line;
       if (line.trim().startsWith("<div")) return line;
       if (line.trim().startsWith("</div")) return line;
+      if (line.trim().startsWith("<p")) return line;
+      if (line.trim().startsWith("</p")) return line;
       if (line.startsWith("- ")) return `<li>${line.slice(2)}</li>`;
       if (line.trim() === "") return "";
       return `<p>${line}</p>`;
