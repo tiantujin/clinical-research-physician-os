@@ -436,6 +436,406 @@ export const deepContentAdditions: Record<string, string> = {
   "sae": deepContent["ae-sae"],
 };
 
+const ichE6SourceNote = `
+## 原文来源说明
+本章基于用户提供的《ICH E6(R3) Step 4 Final Guideline, adopted 06 January 2025》整理。网页内容采用学习化改写、结构化解释和CRP工作转译；不是逐字复制原文。学习时建议把本章当作“入职前读懂E6(R3)”的路线图：先理解原则，再理解角色职责，最后理解数据治理和Essential Records。
+`;
+
+export const ichE6Manual: Record<string, string> = {
+  "ich-e6-r3": `
+${ichE6SourceNote}
+## ICH E6(R3)完整学习路线
+### 你需要掌握到什么程度
+如果你面试CRP或Medical Monitor，E6(R3)不需要背章节号，但必须能做到四件事：第一，能用自己的话解释GCP的目的；第二，能区分Investigator、Sponsor、IRB/IEC和Medical Monitor职责；第三，能解释Quality by Design、RBQM、Data Governance、Computerised Systems和Essential Records如何影响真实研究；第四，能把E6(R3)原则应用到Protocol Review、SAE处理、Data Review和研究者沟通中。
+
+### E6(R3)总结构
+E6(R3)由原则、Annex 1和附录构成。原则部分是所有临床试验共同遵循的伦理和科学基础；Annex 1把原则落到IRB/IEC、Investigator、Sponsor和Data Governance；附录覆盖Investigator's Brochure、Clinical Trial Protocol以及Essential Records。对CRP来说，最关键的不是把每一条原文背下来，而是理解这些章节背后的质量逻辑：谁负责保护受试者、谁负责确保数据可信、哪些记录证明研究被正确设计和执行、哪些系统会影响数据完整性。
+
+### 12条GCP原则的CRP转译
+E6(R3)原则强调受试者权益、安全和福祉优先于科学和社会利益。CRP在工作中必须把这句话转成可执行动作：方案中的纳排标准是否保护高风险患者？给药暂停和复治规则是否清楚？知情同意是否让患者理解试验性治疗、替代治疗和风险？当研究者认为患者可以继续用药，而方案要求暂停时，CRP必须提醒团队优先遵循患者安全和方案要求。
+
+原则还强调研究应有科学合理性、合格人员、充分资源、独立伦理审查、可追溯记录和可靠数据。临床医生常把“科学合理”理解成机制合理，但Sponsor视角还要问：研究设计是否能回答问题？终点是否能被监管接受？统计假设是否有临床意义？数据来源是否可验证？如果这些问题没有回答，研究即使机制漂亮，也可能无法支持注册。
+
+### Quality by Design
+Quality by Design不是质量部门口号，而是Protocol开始前就要识别“关键质量因素”。在TNBC注册研究中，关键质量因素可能包括：PD-L1检测质量、随机化分层、PFS影像评估窗口、盲态独立中心评审、死亡日期、后续治疗、SAE上报、ADC相关ILD管理和中国样本量。CRP参与方案设计时要主动把这些内容变成具体流程，而不是等研究启动后靠query修补。
+
+### Risk-based Quality Management
+RBQM要求Sponsor识别、评估、控制、沟通、审查和报告风险。CRP要懂的重点是：风险不是抽象概率表，而是影响患者安全或关键数据可信度的具体问题。例如，一个研究的主要终点是PFS，那么影像缺失、评估窗口偏离、非盲态评估和进展后继续治疗记录不全，都是关键风险。一个ADC研究的关键安全风险是ILD，那么基线肺部病史、CT、症状教育、停药规则和复治禁忌就是风险控制措施。
+
+### Investigator职责
+研究者负责受试者医疗照护、知情同意、按方案执行、AE/SAE识别和报告、源数据真实性、药物管理和与IRB/IEC沟通。CRP面试中经常被问：Medical Monitor能否替研究者决定治疗？答案是否定的。研究者对患者医疗决定负责；Medical Monitor提供方案和产品相关医学解释，帮助研究者理解研究要求，并把系统性风险反馈给Sponsor。
+
+### Sponsor职责
+Sponsor负责研究设计、资源、职责分配、人员培训、研究者选择、监管和伦理沟通、监督、质量管理、安全评估与报告、数据与记录、统计分析、CSR和研究提前终止/暂停的沟通。对CRP来说，Sponsor职责意味着你不能只站在单个病例上看问题，还要看整个研究系统：某类SAE是否聚集？某个入排标准是否造成大量筛败？某个数据字段是否反复query？这些都可能提示方案或培训需要调整。
+
+### Data Governance
+E6(R3)单独强调Data Governance，说明现代试验的数据来源、系统和流转已经足够复杂。CRP要关心的数据不是所有字段，而是关键医学数据：诊断、分期、biomarker、入排证据、给药、AE/SAE、影像评估、进展、死亡、后续治疗。数据治理要求数据可追溯、可解释、可审计，并保护盲态。盲态研究中，谁能看非盲数据、哪些安全信息可能导致破盲、DMC如何运作，都属于数据治理问题。
+
+### Computerised Systems
+电子系统包括EDC、ePRO、IRT/IWRS、eTMF、中心实验室、影像平台、安全数据库和统计环境。E6(R3)强调系统应有适当程序、培训、安全、验证、发布管理、故障处理、技术支持和用户管理。CRP不需要做系统验证，但要知道系统失败会影响医学判断：如果IRT随机化错误，可能影响治疗分配；如果ePRO缺失，可能影响症状终点；如果影像上传延迟，可能影响PFS事件确认。
+
+### Essential Records
+Essential Records证明研究被合规设计、执行、监督、分析和报告。CRP最常接触的是Protocol、IB、ICF、SAP、Monitoring Plan、Medical Monitoring Plan、Safety Management Plan、DSUR、CSR、DMC材料、SAE叙述、研究者沟通信和培训记录。面试中如果问“为什么文件重要”，不要回答“审计要看”，而要回答：文件是患者保护和数据可信度的证据链。
+
+### CRP工作中如何用到
+- Protocol Review：用E6(R3)检查研究质量是否从设计阶段被嵌入。
+- Medical Monitoring：用Investigator/Sponsor职责边界处理中心医学问题。
+- Safety Review：用Sponsor安全评估职责判断个案和趋势。
+- Data Review：用Data Governance思想审阅关键医学数据。
+- Investigator Meeting：把关键质量因素和高风险流程讲给研究者。
+- CSR：解释方案偏离、数据缺失、安全风险和结论稳健性。
+
+### 面试官可能怎么问
+Q1：E6(R3)最重要的变化是什么？
+参考答案：E6(R3)从传统文件合规进一步转向Quality by Design、风险比例原则、数据治理、计算机化系统管理和患者中心。它要求Sponsor在设计阶段识别关键质量因素，并用RBQM保护受试者安全和结果可靠性。
+
+Q2：Sponsor如何落实RBQM？
+参考答案：Sponsor先识别影响患者安全和关键数据可信度的风险，再评估风险影响、发生可能性和现有控制，制定风险控制措施和阈值，持续监测、沟通和调整。比如肿瘤PFS研究要重点管理影像评估、随机化分层、SAE和死亡日期。
+
+Q3：Data Governance为什么对CRP重要？
+参考答案：CRP的医学判断依赖数据。如果关键医学数据不可追溯、缺失、被错误修改或导致盲态破坏，研究结论就不可靠。CRP要关注诊断、终点、安全和后续治疗等关键数据的完整性和医学合理性。
+
+Q4：E6(R3)中患者中心化如何落地？
+参考答案：患者中心化不是减少所有检查，而是在保护安全和数据质量的前提下减少不必要负担，例如优化访视窗口、使用远程随访、清楚解释风险、设计合理PRO，并确保患者能真正理解知情同意。
+`
+};
+
+export const regulatoryManual: Record<string, string> = {
+  "global-regulatory": `
+## 全球法规体系：CRP必须读懂的监管地图
+### 你需要掌握到什么程度
+CRP不需要替注册同事写完整申报策略，但必须能听懂FDA、EMA、NMPA/CDE、PMDA和ICH在临床开发中的语言。面试中如果问法规，不是考你背法规条款，而是考你能否理解为什么同一个研究在美国、欧洲、中国和日本可能有不同沟通重点：人群外推、MRCT设计、终点接受度、安全数据库、加速路径、真实世界证据和上市后承诺。
+
+### FDA
+FDA管理美国药品临床开发与上市审评。CRP常见关键词包括IND、Pre-IND Meeting、End-of-Phase 2 Meeting、Type B Meeting、NDA/BLA、Accelerated Approval、Breakthrough Therapy、Fast Track、Priority Review和Advisory Committee。CRP要理解：FDA沟通非常重视清晰的问题列表、可审评证据和benefit-risk逻辑。EOP2会议尤其关键，因为它决定Phase III设计是否有机会支持注册。
+
+### EMA
+EMA管理欧盟集中审评路径，常见关键词包括CTA、MAA、CHMP、Scientific Advice、PRIME、Conditional Marketing Authorisation、Accelerated Assessment。EMA常更强调总体获益风险、欧洲临床实践、比较治疗、RMP和上市后风险管理。CRP在读欧洲审评文件时要关注：是否要求更长随访、是否限制适应证、是否要求额外药物警戒活动。
+
+### NMPA/CDE
+中国加入ICH后，临床开发语言显著国际化，MRCT、ICH E6、E17、真实世界证据、突破性治疗、附条件批准和优先审评越来越重要。CRP要特别关注中国人群数据是否充分、种族敏感性、PK/安全性一致性、中国标准治疗差异、桥接策略和CDE沟通交流会议。对于全球肿瘤研究，如果中国样本量不足，即使全球阳性，也可能面临本地外推和标签沟通压力。
+
+### PMDA
+日本PMDA关注日本人群数据、剂量、PK、安全性和本地临床实践。全球MRCT中，日本常要求早期参与，以避免后期桥接困难。CRP不一定频繁直接接触PMDA，但在全球开发会上要理解日本入组、剂量和安全性外推的重要性。
+
+### FDA vs EMA vs NMPA速查表
+| 维度 | FDA | EMA | NMPA/CDE |
+| 临床试验申请 | IND | CTA按欧盟体系 | IND默示许可/沟通交流 |
+| 上市申请 | NDA/BLA | MAA | NDA/BLA |
+| 加速路径 | Accelerated Approval | Conditional MA | 附条件批准 |
+| 突破性机制 | Breakthrough Therapy | PRIME | 突破性治疗品种 |
+| 优先审评 | Priority Review | Accelerated Assessment | 优先审评审批 |
+| 孤儿药 | Orphan Drug | Orphan Designation | 罕见病/鼓励目录相关路径 |
+| RWE接受度 | 可用于支持特定场景 | 强调方法学和数据适用性 | 在部分场景逐步接受 |
+| MRCT重点 | 设计和统计可解释 | 欧盟实践和获益风险 | 中国人群充分性和外推 |
+
+### CRP必懂会议
+- Pre-IND Meeting：讨论首次人体研究、非临床支持、起始剂量、早期方案。
+- EOP2 Meeting：讨论Phase II结果、Phase III设计、终点、统计和安全数据库。
+- Type B Meeting：FDA中常见关键开发节点会议类型。
+- CDE沟通交流会议：用于中国开发策略、关键研究设计、附条件批准、临床价值等沟通。
+- Pre-NDA Meeting：确认提交资料完整性、数据库成熟度、申报内容和关键风险。
+- Advisory Committee / AdCom：公开专家委员会讨论重大获益风险争议。
+
+### CRP工作中如何用到
+Protocol Review时，CRP要问终点是否被目标监管地区接受；Data Review时，要问中国/亚洲亚组是否足够解释；Safety Review时，要问风险是否需要RMP或标签管理；Sponsor决策时，要问是否需要EOP2、CDE沟通或Scientific Advice。
+
+### 面试问法与答案
+Q：全球阳性研究为什么中国仍可能需要补充数据？
+答：中国审评需要判断全球数据能否外推到中国患者，包括种族敏感性、PK、安全性、标准治疗、入组比例和疗效方向一致性。如果中国样本量太少，可能需要补充中国队列、桥接研究或上市后研究。
+
+Q：加速批准是不是降低证据标准？
+答：不是。加速或附条件批准通常用于严重疾病和未满足需求，可能接受替代终点或中期证据，但要求疗效幅度、风险可管理，并通常需要确认性研究或上市后承诺。
+`
+  ,
+  "fda-regulatory": `
+## FDA监管体系详解
+FDA临床开发路径以IND为起点，NDA/BLA为上市申请终点。CRP最常参与的是围绕关键研究设计与安全数据进行医学输入。Pre-IND会议通常讨论首次人体研究的非临床支持、起始剂量、剂量递增、安全监测和早期方案。EOP2会议是开发分水岭，Sponsor会与FDA讨论Phase II数据是否足以支持进入Phase III、主要终点是否可接受、样本量与统计假设是否合理、DMC和中期分析如何设计。Pre-NDA会议则确认申报资料、数据库、CSR、安全汇总和标签问题。
+
+### 加速路径
+Fast Track、Breakthrough Therapy、Accelerated Approval和Priority Review都服务于严重疾病和未满足需求，但不是降低证据标准。Accelerated Approval可能基于替代终点，如ORR或PFS，但需要确认性研究。CRP在项目会上要能判断：替代终点是否合理预测临床获益？安全风险是否可管理？确认性研究是否已经启动或设计充分？
+
+### AdCom
+Advisory Committee通常发生在获益风险争议较大时。CRP要准备解释疾病需求、研究设计、疗效稳健性、安全风险、亚组和标签边界。面试回答时可说：AdCom不是单纯学术会议，而是公开审评风险沟通场景。
+`,
+  "ema-regulatory": `
+## EMA监管体系详解
+EMA强调集中审评、CHMP意见、Scientific Advice、PRIME、Conditional Marketing Authorisation和RMP。与FDA相比，EMA文件常更系统地呈现获益风险和风险管理计划。CRP需要关注欧洲标准治疗、对照合理性、生活质量、长期随访和药物警戒承诺。
+
+### Conditional Marketing Authorisation
+适用于严重或危及生命疾病、公共卫生紧急或孤儿药场景。条件批准要求未满足需求明确、获益风险为正、申请人能够补充完整数据。CRP要理解：条件批准后不是工作结束，而是确认性研究、PSUR/PBRER、RMP和额外安全活动会成为生命周期管理重点。
+
+### RMP与CRP
+RMP中的重要已知风险、重要潜在风险和缺失信息，需要转化为医生能执行的风险最小化措施。例如ADC相关ILD可要求医生教育、早期CT评估、停药规则和患者警示材料。
+`,
+  "nmpa-cde-regulatory": `
+## NMPA/CDE与中国开发详解
+中国加入ICH后，临床开发越来越强调国际一致标准，但本地证据仍然重要。CRP必须理解中国人群数据不是形式要求，而是获益风险能否外推到中国患者的证据基础。
+
+### CDE沟通交流会议
+常见议题包括关键研究设计、MRCT中国参与、附条件批准、突破性治疗、真实世界证据、上市后研究和儿童/罕见病开发。CRP需要为会议准备医学问题：目标人群是否符合中国临床实践？对照是否在中国可及？主要终点是否被接受？中国亚组样本量是否支持解释？
+
+### MRCT与中国桥接
+如果中国参与全球MRCT不足，可能需要PK桥接、安全性补充、扩展队列或上市后研究。肿瘤研究还要考虑中国后续治疗可及性对OS解释的影响。
+`,
+  "pmda-regulatory": `
+## PMDA与日本开发详解
+PMDA常关注日本人群数据、剂量合理性、PK/PD、安全性和本地临床实践。全球同步开发中，日本希望尽早参与MRCT，避免后期单独桥接。CRP在全球团队讨论中要理解：同一个剂量在不同人群中的暴露、安全性和可耐受性可能影响本地标签和用药管理。
+`
+};
+
+export const trialDesignManual: Record<string, string> = {
+  "rct": `
+## RCT随机对照试验：CRP读Protocol的基准设计
+RCT通过随机分配把已知和未知混杂尽量平衡，是确认疗效最常用、监管接受度最高的设计。CRP需要关注的不只是“有没有随机”，而是随机化比例、盲法、对照是否符合标准治疗、分层因素是否覆盖关键预后因素、主要终点是否客观、缺失数据如何处理、交叉和后续治疗是否影响OS解释。
+
+### 适用场景
+注册性III期、存在标准治疗、疗效差异需要严谨证明的场景。TNBC一线研究、辅助/新辅助研究、多数确证性肿瘤研究都优先考虑RCT。
+
+### 优点
+偏倚控制强，证据等级高，可支持标签和指南。随机化能减少医生选择患者造成的偏倚。
+
+### 缺点
+成本高、周期长、伦理和入组挑战大。若标准治疗快速变化，对照可能过时。
+
+### CRP审核重点
+对照是否合理；分层因素是否包括PD-L1、治疗线、内脏转移等关键因素；安全监测是否适合双盲；中期分析和DMC是否保护研究完整性。
+
+### 面试问法
+Q：为什么RCT比单臂研究证据强？
+答：RCT通过随机化和对照减少混杂和选择偏倚，可以更可信地把疗效差异归因于治疗本身。
+`,
+  "single-arm": `
+## Single-arm Trial单臂研究
+单臂研究没有同期对照，通常用于罕见病、后线肿瘤、无有效标准治疗或早期信号探索。CRP要记住：单臂研究能证明抗肿瘤活性，但很难证明相对获益。
+
+### 适用场景
+后线TNBC、罕见分子亚型、疗效幅度非常大且自然史清楚的疾病。常用ORR、DoR、DCR作为主要或关键终点。
+
+### 优点
+速度快、样本量较小、适合早期PoC和高未满足需求。
+
+### 缺点
+历史对照不可比，患者选择偏倚明显，ORR不一定转化为PFS/OS获益。
+
+### 监管接受度
+在严重疾病、无有效治疗且疗效显著时，可能支持加速或附条件批准，但通常要求确认性研究。
+
+### CRP审核重点
+入组人群是否定义严格；疗效评估是否独立审查；DoR是否足够；安全性数据库是否充分；是否已有确认性研究计划。
+`,
+  "master-protocol": `
+## Basket / Umbrella / Platform / Master Protocol
+Master Protocol是一套总方案下管理多个治疗臂、人群或亚研究的设计。Basket按同一分子改变跨癌种，Umbrella按同一癌种不同biomarker分配治疗，Platform允许治疗臂动态进入或退出。
+
+### 适用场景
+肿瘤精准治疗、多个biomarker并行开发、快速筛选联合方案和长期学习型研究。
+
+### 优点
+共享基础设施，提高效率；适合快速迭代；有利于稀有人群。
+
+### 缺点
+统计复杂、操作复杂、知情同意复杂、DMC和多重性管理要求高。
+
+### CRP审核重点
+biomarker检测是否可靠；治疗臂进入/退出规则是否预设；患者分配是否清楚；安全信号是否能按治疗臂快速识别；沟通材料是否避免患者误解。
+`,
+  "adaptive-design": `
+## Adaptive Design适应性设计
+适应性设计允许在预设规则下根据中期数据修改研究，如样本量重估、剂量选择、早停无效、富集人群或删除治疗臂。关键是“预设”和“保护研究完整性”。
+
+### 适用场景
+早期剂量探索、平台研究、样本量不确定、biomarker富集可能性高的研究。
+
+### 优点
+提高效率，减少无效暴露，可能更快找到有效人群。
+
+### 缺点
+统计和执行复杂；需要DMC/IDMC；若规则不清会被质疑操纵结果。
+
+### CRP审核重点
+中期分析谁看数据；是否保护盲态；适应性规则是否写入Protocol/SAP；安全和疗效阈值是否有医学意义。
+`
+  ,
+  "non-inferiority": `
+## Non-inferiority Trial非劣效研究详解
+非劣效研究要证明新治疗相对标准治疗“不差超过一个临床可接受界值”。它不是证明两者完全一样，而是证明疗效损失在可接受范围内，同时新治疗可能有安全性、便利性、依从性、成本或可及性优势。
+
+### CRP关注
+非劣效界值必须有历史证据和临床意义。对照药必须有效且执行质量高，否则可能出现“劣质对劣质也非劣”的问题。ITT和PP分析都重要：ITT偏向无差异，PP更能反映真正接受治疗效果；两者方向一致更有说服力。
+
+### 面试问法
+Q：非劣效研究最怕什么？
+答：界值设定没有临床意义、对照有效性不稳定、依从性差导致结果向无差异偏移，以及把非劣效错误解读成疗效相同或更好。
+`,
+  "equivalence-trial": `
+## Equivalence Trial等效研究详解
+等效研究证明两种治疗差异落在预设上下界内，常用于生物类似药、剂型转换、桥接或PK/PD相似性场景。它与非劣效不同：非劣效只关心不能差太多，等效要求不能差太多也不能好太多，因为过强效果也可能提示产品并不相似或安全不同。
+
+### CRP关注
+等效界值、敏感终点、检测方法一致性、分析集和缺失数据都会影响结论。医学上要判断“统计等效”是否真的支持临床可替换。
+`,
+  "pragmatic-trial": `
+## Pragmatic Trial实用性临床试验详解
+实用性研究更贴近日常临床，纳入更广泛患者、允许常规治疗路径，关注治疗在真实世界中的效果。它适合回答“在常规医疗环境中是否有用”，而不是严格控制条件下的生物学疗效。
+
+### CRP关注
+终点要贴近临床实践，数据来源要可靠，混杂和依从性要被预先考虑。实用性不等于低质量，反而需要更强的数据治理。
+`,
+  "registry-study": `
+## Registry Study登记研究详解
+登记研究系统收集特定疾病、人群或治疗的数据，适合长期安全性、治疗路径、罕见事件、特殊人群和真实世界结局。肿瘤领域可用于HER2-low检测路径、ADC序贯、Post-IO治疗和脑转移人群。
+
+### CRP关注
+登记研究要预定义数据字典、终点定义、随访窗口、缺失数据处理和质量控制。最大风险是数据不完整、选择偏倚和终点不一致。
+`
+};
+
+export const crpHandbookManual: Record<string, string> = {
+  "protocol-review": `
+## Protocol Review入职SOP扩展版
+### 工作目的
+确保方案能安全、合规、可执行地回答临床开发问题，并能支持未来CSR、注册沟通和医学传播。
+
+### 输入文件
+Protocol synopsis、完整Protocol、IB、SAP草案、竞品研究表、疾病指南、前期研究数据、TPP/CDP、监管会议纪要。
+
+### 输出文件
+CRP review comments、医学风险清单、Protocol Review Checklist、关键问题列表、给统计/运营/PV/注册的跨部门问题。
+
+### 操作步骤
+1. 先读研究问题：PICO是否清楚。
+2. 再读背景：未满足需求和竞品格局是否支持研究价值。
+3. 审人群：入排是否匹配未来标签，是否可执行。
+4. 审治疗：剂量、减量、暂停、复治、合并用药是否清楚。
+5. 审终点：主要终点是否能回答主要目标。
+6. 审安全：AE/SAE/AESI、DLT、停药规则是否完整。
+7. 审统计：分析集、样本量、分层、多重性是否合理。
+8. 审执行：访视、影像、实验室、样本采集是否符合真实路径。
+
+### 关键判断点
+如果一个Protocol没有清楚回答“患者是谁、对照是谁、主要终点是什么、风险如何管、结果如何解释”，就不是成熟方案。
+
+### 可复制模板
+Major Comment: [Issue] The proposed inclusion criterion may exclude a clinically relevant population and reduce generalisability. [Rationale] In routine TNBC practice, patients with stable treated brain metastases are commonly encountered. [Recommendation] Consider allowing stable treated brain metastases with predefined safety monitoring and stratified analysis.
+
+Minor Comment: Please align AE collection window in Section X with Safety Management Plan.
+`,
+  "safety-review": `
+## Safety Review入职SOP扩展版
+Safety Review的目的不是读line listing，而是判断是否出现新的风险、已知风险是否变重、风险管理是否需要升级。CRP需要准备SAE/死亡/AESI摘要、暴露校正发生率、Grade 3-5 AE、停药/减量、实验室异常和与同类药物对比。
+
+### 操作步骤
+1. 看死亡和危及生命事件。
+2. 看AESI趋势，如ILD、免疫性肺炎、肝损伤。
+3. 看时间关系和剂量关系。
+4. 看去挑战/再挑战。
+5. 看是否需要更新IB、ICF、Protocol或研究者信。
+
+### 输出模板
+Safety Concern: Suspected increase in Grade ≥2 ILD.
+Evidence: 4 cases among 68 exposed patients, median onset 72 days, 2 required hospitalisation.
+Assessment: Potential drug-related AESI; alternative causes not sufficient in 2 cases.
+Action: Temporary enrolment pause for pulmonary review; update site training and imaging algorithm.
+`,
+  "data-review": `
+## Data Review入职SOP扩展版
+医学数据审阅关注数据是否医学合理，而不是替DM查格式。CRP重点审阅诊断、分期、biomarker、入排证据、给药、AE、实验室、影像、进展、死亡、后续治疗和停药原因。
+
+### 好Query示例
+The subject was recorded as having progressive disease on 12-Mar-2026, while the tumor assessment page indicates stable disease on the same date. Please clarify the investigator-assessed response and provide the source documentation basis.
+
+### 常见错误
+Query带有诱导性；医学问题过宽泛；没有说明矛盾数据位置；把医学判断问题写成行政问题。
+`,
+  "medical-monitor": `
+## Medical Monitoring入职SOP扩展版
+Medical Monitor负责持续医学支持和风险识别。典型输入包括中心医学问题、SAE narrative、AESI、实验室异常、入排边界病例、方案偏离和数据review发现。
+
+### 工作边界
+Medical Monitor不能替研究者决定患者治疗，但可以解释Protocol要求、产品风险、停药/复治规则和需要补充的信息。
+
+### 记录模板
+Question: Can a patient with prior adjuvant pembrolizumab be enrolled?
+Assessment: Eligibility depends on recurrence interval, resolution of immune-related toxicity and protocol exclusion criteria.
+Recommendation: Site should provide prior IO dates, reason for discontinuation and toxicity history for sponsor medical review.
+`
+  ,
+  "query-review": `
+## Query Review SOP详解
+Query Review的目的，是让数据库中的医学矛盾被中心澄清，而不是诱导中心给出Sponsor想要的答案。CRP应优先review关键医学数据：入排证据、病理、biomarker、影像评估、AE/SAE、死亡、后续治疗和停药原因。
+
+### 可复制模板
+Query: The concomitant medication page indicates systemic corticosteroid use from 10-Feb-2026 to 20-Feb-2026, while the AE page does not report any immune-related adverse event during this period. Please confirm the indication for corticosteroid use and update the relevant AE page if applicable.
+
+### 常见错误
+不要写“Please add immune-related pneumonitis”，这会诱导。应该要求澄清用药原因和相关AE记录。
+`,
+  "medical-input-csr": `
+## Medical Input to CSR SOP详解
+CSR不是统计输出合集，而是研究医学故事的最终证据文件。CRP审阅CSR时要确认疾病背景准确、研究设计描述清楚、分析集和偏离解释合理、疗效结果不过度解读、安全性叙述完整、局限性诚实呈现。
+
+### CRP审核重点
+PFS/OS成熟度、删失、后续治疗、亚组一致性、死亡原因、AESI、停药率、剂量调整、重大方案偏离和数据cut-off。
+`,
+  "medical-input-ib": `
+## Medical Input to IB SOP详解
+IB帮助研究者理解研究药物已知信息和潜在风险。CRP需要确认IB中机制、非临床毒理、人体安全性、剂量依据、风险管理和研究者指导一致。
+
+### CRP审核重点
+新出现SAE是否需要更新IB；AESI管理是否清楚；同类药物风险是否充分；研究者是否能根据IB进行合理风险判断。
+`,
+  "medical-input-sap": `
+## Medical Input to SAP SOP详解
+SAP由统计团队主导，但CRP必须确认统计问题是否回答临床问题。分析集、主要终点、删失规则、缺失数据、亚组、多重性和敏感性分析都会影响医学解释。
+
+### CRP问题清单
+ITT/FAS是否接近随机化人群？mITT限制是否有医学理由？PFS删失规则是否可能偏倚？亚组是否预设？关键安全分析是否覆盖AESI？
+`,
+  "study-start-up": `
+## Study Start-up医学工作详解
+启动阶段CRP要把复杂Protocol转成中心能执行的医学规则。核心工作包括SIV医学培训、Study FAQ、入排边界问题、SAE上报培训、AESI管理算法、影像评估培训和研究者沟通路径。
+
+### 输出物
+医学培训PPT、中心FAQ、Medical Monitoring Plan、Safety Management Plan、Protocol Deviation医学评估流程。
+`,
+  "study-close-out": `
+## Study Close-out医学工作详解
+关闭阶段CRP要确保关键医学数据在锁库前闭环：死亡日期、进展日期、后续治疗、SAE随访、AESI结局、停药原因和重要方案偏离。锁库后CRP重点转向CSR、publication、审评问答和经验复盘。
+`
+};
+
+export const protocolStudyManual: Record<string, string> = {
+  "keynote-522-deep-dive": `
+## KEYNOTE-522详细解读
+KEYNOTE-522回答早期高危TNBC中，新辅助化疗联合pembrolizumab并在术后继续pembrolizumab，是否能提高pCR并改善EFS。PICO中Population是早期高危TNBC，Intervention是pembrolizumab联合新辅助化疗后辅助pembrolizumab，Comparator是安慰剂联合相同化疗，Outcome包括pCR和EFS。设计逻辑是早期TNBC复发风险高，新辅助阶段能快速观察pCR，辅助阶段继续免疫可能巩固微小残留病灶控制。CRP要重点关注pCR定义、手术时点、术后治疗依从性、免疫相关AE、长期EFS随访和早期毒性对手术的影响。Sponsor视角会关注这项研究如何把IO从晚期推进到治愈意图场景；审评员会关注pCR改善是否转化为EFS获益，以及长期安全性是否可接受。未来开发启发是：早期TNBC终点不能只看短期pCR，还要证明EFS和安全性平衡。
+`,
+  "impassion130-deep-dive": `
+## IMpassion130详细解读
+IMpassion130研究atezolizumab联合nab-paclitaxel用于一线转移性TNBC。研究问题是PD-L1阳性TNBC患者是否能从PD-L1抑制剂联合化疗中获益。PICO中人群是一线mTNBC，干预是atezolizumab+nab-paclitaxel，对照是安慰剂+nab-paclitaxel，终点包括PFS和OS。该研究的重要性在于开启TNBC免疫治疗时代，也暴露出伴随诊断、PD-L1检测平台、适应证边界和后续验证复杂性。CRP应关注PD-L1 IC评分与CPS体系差异、化疗骨架选择、OS统计层级、安全性和监管区域差异。Sponsor视角要看到：一个阳性研究不等于开发路径永远稳固，后续确认、检测标准和竞品变化会影响生命周期。
+`,
+  "tropion-breast01-deep-dive": `
+## TROPION-Breast01详细解读
+TROPION-Breast01评估TROP2 ADC datopotamab deruxtecan在既往治疗HR+/HER2-乳腺癌中的价值。虽然不是TNBC核心研究，但对TROP2 ADC开发地图极重要。CRP要关注ADC payload、ILD/口腔炎等毒性、既往CDK4/6和化疗暴露、人群异质性、PFS与OS成熟度、与已有ADC的差异化。Sponsor视角要问：疗效优势是否足以抵消毒性管理复杂度？未来是否能扩展到TNBC、一线或联合IO？审评员会关注安全性数据库、ILD管理、亚组一致性和标签定位。
+`,
+  "destiny-breast04-deep-dive": `
+## DESTINY-Breast04详细解读
+DESTINY-Breast04重塑HER2-low乳腺癌治疗格局。研究问题是HER2-low既往治疗患者是否能从trastuzumab deruxtecan获益。PICO中Population是HER2-low不可切除或转移性乳腺癌，Intervention是T-DXd，Comparator是医生选择治疗，Outcome包括PFS和OS。该研究的核心意义是把HER2表达从阳性/阴性二分法推进到低表达可治疗人群。CRP要关注HER2-low检测一致性、IHC 1+与2+/ISH-判读、ILD风险、HR阳性和TNBC亚组、真实世界再检测。Sponsor启发是：检测路径和病理教育本身就是开发策略的一部分。
+`,
+  "destiny-breast06-deep-dive": `
+## DESTINY-Breast06详细解读
+DESTINY-Breast06进一步探索HER2-low/HER2-ultralow更早线治疗价值。CRP阅读时要关注人群定义是否会改变临床检测实践、对照治疗是否符合标准、PFS/OS成熟度、安全性尤其ILD、以及HER2表达动态变化。Sponsor视角要判断：扩展人群是否带来足够临床价值，还是会因检测不稳定导致真实世界使用混乱。审评员可能重点问HER2-ultralow检测可重复性、病理一致性和获益风险。
+`,
+  "begonia-deep-dive": `
+## BEGONIA详细解读
+BEGONIA是TNBC一线联合策略探索平台，关注不同IO/ADC/化疗组合的早期信号。CRP要把它作为“早期组合开发如何生成PoC”的案例，而不是注册性研究。重点看ORR、DoR、安全run-in、停药率、剂量优化和哪些组合值得进入随机确认。Sponsor视角要避免被小样本ORR冲昏头脑，必须看获益持续性、毒性可管理性和可注册对照选择。
+`,
+  "ascent-04-deep-dive": `
+## ASCENT-04详细解读
+ASCENT-04代表TROP2 ADC向一线TNBC或与IO联合方向推进的开发逻辑。CRP要关注既往IO暴露、PD-L1状态、对照治疗、ADC+IO毒性叠加、PFS/OS终点和后续ADC序贯。Sponsor视角要问：相比既有IO+化疗或ADC单药，联合是否有足够增量价值？审评员会关注安全性、亚组一致性、后续治疗和适应证边界。
+`
+};
+
 export const protocolDeepDives: Record<string, string> = {
   "keynote-355-deep-dive": `
 ## KEYNOTE-355完整拆解
@@ -805,5 +1205,15 @@ export const quizzes: Record<string, QuizQuestion[]> = {
 };
 
 export function getDeepBody(cardId: string) {
-  return [deepContent[cardId], deepContentAdditions[cardId], protocolDeepDives[cardId], caseAndTemplateContent[cardId]].filter(Boolean).join("\n");
+  return [
+    deepContent[cardId],
+    deepContentAdditions[cardId],
+    ichE6Manual[cardId],
+    regulatoryManual[cardId],
+    trialDesignManual[cardId],
+    crpHandbookManual[cardId],
+    protocolDeepDives[cardId],
+    protocolStudyManual[cardId],
+    caseAndTemplateContent[cardId]
+  ].filter(Boolean).join("\n");
 }

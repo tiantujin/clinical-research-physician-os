@@ -869,6 +869,51 @@ ${commonInterview}
 - 附条件批准后，确认性研究设计和上市后安全监测同样关键。
 - 医学部要避免把“快速通道”误读成“低质量证据也可接受”。
 `
+      },
+      {
+        id: "fda-regulatory",
+        title: "FDA监管沟通与加速路径",
+        summary: "FDA IND、Type B Meeting、EOP2、Pre-NDA、AdCom和加速批准路径的CRP学习卡。",
+        tags: ["FDA", "Regulatory", "Accelerated Approval"],
+        links: ["global-regulatory", "reviewer-benefit-risk", "phase-iii-interview"],
+        body: `
+## 学习目标
+- 理解FDA临床开发沟通节点。
+- 能解释Pre-IND、EOP2、Pre-NDA和AdCom对Protocol设计的影响。
+`
+      },
+      {
+        id: "ema-regulatory",
+        title: "EMA监管体系",
+        summary: "EMA Scientific Advice、PRIME、Conditional MA、CHMP和RMP的CRP学习卡。",
+        tags: ["EMA", "CHMP", "RMP"],
+        links: ["global-regulatory", "rmp", "dsur-psur"],
+        body: `
+## 学习目标
+- 理解EMA对获益风险、RMP和条件批准的关注点。
+`
+      },
+      {
+        id: "nmpa-cde-regulatory",
+        title: "NMPA/CDE与中国临床开发",
+        summary: "中国加入ICH后的MRCT、桥接、中国样本量、沟通交流会议和附条件批准。",
+        tags: ["NMPA", "CDE", "China", "MRCT"],
+        links: ["global-regulatory", "reviewer-china-data", "ich-e6-r3"],
+        body: `
+## 学习目标
+- 理解中国人群数据、CDE沟通、MRCT和桥接策略在CRP工作中的意义。
+`
+      },
+      {
+        id: "pmda-regulatory",
+        title: "PMDA与日本开发考虑",
+        summary: "日本PMDA关注本地人群、PK、安全性、剂量和全球同步开发。",
+        tags: ["PMDA", "Japan", "MRCT"],
+        links: ["global-regulatory", "ich-suite"],
+        body: `
+## 学习目标
+- 理解日本参与全球MRCT的常见考虑。
+`
       }
     ]
   },
@@ -1148,6 +1193,50 @@ ${commonInterview}
 - 调整规则必须预先写入 protocol/SAP。
 - 独立 DMC 维护盲态和研究完整性。
 - 统计方法要控制错误率。
+`
+      },
+      {
+        id: "non-inferiority",
+        title: "Non-inferiority Trial 非劣效研究",
+        summary: "用于证明新治疗不比对照差超过预设界值，常见于疗效相近但安全、便利或可及性更好的场景。",
+        tags: ["Non-inferiority", "Trial Design"],
+        links: ["rct", "alpha-beta", "endpoint-evaluation"],
+        body: `
+## 学习目标
+- 理解非劣效界值、对照有效性、ITT/PP一致性和临床意义。
+`
+      },
+      {
+        id: "equivalence-trial",
+        title: "Equivalence Trial 等效研究",
+        summary: "用于证明两种治疗差异落在预设等效界值内，常用于生物类似药或桥接场景。",
+        tags: ["Equivalence", "Trial Design"],
+        links: ["non-inferiority", "analysis-sets"],
+        body: `
+## 学习目标
+- 区分等效、非劣效和优效设计。
+`
+      },
+      {
+        id: "pragmatic-trial",
+        title: "Pragmatic Trial 实用性临床试验",
+        summary: "更贴近真实临床路径，用于评估治疗在常规实践中的效果。",
+        tags: ["Pragmatic Trial", "RWE"],
+        links: ["rwe", "rwe-oncology-topic"],
+        body: `
+## 学习目标
+- 理解解释性研究与实用性研究的区别。
+`
+      },
+      {
+        id: "registry-study",
+        title: "Registry Study 登记研究",
+        summary: "系统收集特定疾病、人群或治疗的真实世界数据，常用于安全性、治疗路径和长期结局。",
+        tags: ["Registry", "RWE", "Real World"],
+        links: ["rwe", "causal-methods"],
+        body: `
+## 学习目标
+- 理解登记研究的数据质量、偏倚和CRP可用场景。
 `
       }
     ]
@@ -1568,6 +1657,72 @@ ${commonInterview}
 ## 注意事项
 - 不替代研究者独立医疗判断。
 - 所有关键医学意见要有记录，并与 protocol 保持一致。
+`
+      },
+      {
+        id: "query-review",
+        title: "Query Review",
+        summary: "训练CRP写出具体、不诱导、可回答的医学Query。",
+        tags: ["Query", "Data Review", "CRP SOP"],
+        links: ["data-review", "medical-monitor"],
+        body: `
+## 学习目标
+- 判断哪些数据矛盾需要医学Query，哪些需要升级医学讨论。
+`
+      },
+      {
+        id: "medical-input-csr",
+        title: "Medical Input to CSR",
+        summary: "CRP如何审阅CSR中的疾病背景、研究设计、疗效、安全和医学解释。",
+        tags: ["CSR", "Medical Writing", "CRP SOP"],
+        links: ["csr", "data-review", "survival-analysis"],
+        body: `
+## 学习目标
+- 学会从医学角度审阅CSR，不只检查格式。
+`
+      },
+      {
+        id: "medical-input-ib",
+        title: "Medical Input to IB",
+        summary: "CRP如何审阅IB中的非临床、临床、安全性和研究者指导信息。",
+        tags: ["IB", "Medical Writing", "CRP SOP"],
+        links: ["core-documents", "ich-e6-r3"],
+        body: `
+## 学习目标
+- 理解IB如何支持研究者进行风险获益判断。
+`
+      },
+      {
+        id: "medical-input-sap",
+        title: "Medical Input to SAP",
+        summary: "CRP如何从临床意义角度审阅SAP的分析集、终点、缺失数据和敏感性分析。",
+        tags: ["SAP", "Statistics", "CRP SOP"],
+        links: ["analysis-sets", "survival-analysis", "alpha-beta"],
+        body: `
+## 学习目标
+- 让统计分析回答临床问题，而不是只满足数学形式。
+`
+      },
+      {
+        id: "study-start-up",
+        title: "Study Start-up 医学工作",
+        summary: "研究启动阶段CRP如何支持中心培训、医学FAQ、安全培训和入排边界问题。",
+        tags: ["Study Start-up", "SIV", "CRP SOP"],
+        links: ["medical-training", "site-communication", "protocol-review"],
+        body: `
+## 学习目标
+- 掌握启动前医学准备清单。
+`
+      },
+      {
+        id: "study-close-out",
+        title: "Study Close-out 医学工作",
+        summary: "研究关闭阶段CRP如何支持数据清理、CSR、publication和经验复盘。",
+        tags: ["Study Close-out", "CSR", "CRP SOP"],
+        links: ["data-review", "medical-input-csr"],
+        body: `
+## 学习目标
+- 理解数据库锁定前后CRP的医学责任。
 `
       }
     ]
