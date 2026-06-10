@@ -805,6 +805,99 @@ ITT/FAS是否接近随机化人群？mITT限制是否有医学理由？PFS删失
 `
 };
 
+export const regulatoryAttachmentManual: Record<string, string> = {
+  "reg-attachment-ich-e6-r3": `
+## ICH E6(R3)附件学习导读
+### 这份PDF为什么重要
+ICH E6(R3)是当前临床试验Good Clinical Practice（GCP）学习的核心文件。对临床医生转CRP来说，它不是“法规背诵材料”，而是理解药企如何设计、执行、监督、记录和解释临床试验的底层规则。你在网页中学习的Sponsor职责、Investigator职责、Quality by Design、Risk-based Quality Management、Data Governance、Computerised Systems和Essential Records，都来自这份文件的结构。
+
+### 如何在网页内学习
+上方PDF阅读框已经嵌入原始文件，可直接在网页内滚动阅读。建议不要从第一页硬读到最后，而是配合本系统的中文学习导读：先读网页里的CRP解释，再回到PDF中对应章节核对原文框架。后续FDA、NMPA/CDE、EMA、PMDA等法规PDF如果提供原文件，也会放入本模块并以内嵌阅读框呈现。
+
+### 建议阅读顺序
+1. 先读Introduction和Principles，建立GCP伦理与质量框架。
+2. 再读Investigator，理解研究者对受试者医疗照护、知情同意、方案执行和安全报告的责任。
+3. 再读Sponsor，理解药企对研究设计、质量管理、风险控制、安全评估、监查、数据和报告的责任。
+4. 最后读Data Governance和Essential Records，理解现代临床试验为什么越来越强调电子系统、元数据、审计追踪和关键记录。
+
+### 面试高频问法
+Q：如果只能用一句话概括E6(R3)，你会怎么说？
+参考答案：E6(R3)把GCP从传统文件合规推进到以患者保护和数据可靠性为核心的质量源于设计和基于风险管理体系，要求Sponsor和研究者按风险比例设计并执行临床试验。
+
+Q：E6(R3)和CRP有什么关系？
+参考答案：CRP要把E6(R3)原则转化为Protocol设计、安全监测、医学数据审阅、研究者培训和CSR解释。比如识别关键质量因素、定义AESI管理、保护盲态和保证关键终点数据可信。
+`,
+  "reg-ich-core-guidelines": `
+## ICH核心指南如何对应CRP能力
+| 指南 | 全称 | CRP能力 |
+| ICH E6(R3) | Good Clinical Practice | GCP、职责边界、质量管理、数据治理 |
+| ICH E8(R1) | General Considerations for Clinical Studies | 研究质量、关键质量因素、研究设计 |
+| ICH E9 | Statistical Principles for Clinical Trials | 分析集、偏倚、终点、统计原则 |
+| ICH E9(R1) | Estimands and Sensitivity Analysis | 治疗效应定义、中间事件、敏感性分析 |
+| ICH E2A | Clinical Safety Data Management | SAE、SUSAR、加急报告 |
+| ICH E2D | Post-Approval Safety Data Management | 上市后安全报告 |
+| ICH E3 | Clinical Study Reports | CSR结构和医学解释 |
+| ICH M4 | Common Technical Document | 注册申报资料结构 |
+| ICH E17 | Multi-regional Clinical Trials | MRCT设计与地区一致性 |
+
+### CRP学习方法
+不要孤立读指南。Protocol Review时用E8和E6；SAP审阅时用E9和E9(R1)；SAE判断时用E2A；CSR审阅时用E3；全球注册讨论时用M4和E17。
+`,
+  "reg-fda-reference": `
+## FDA法规参考包详解
+FDA体系中CRP最常用的不是法规编号，而是开发节点语言。Pre-IND用于早期开发进入人体前，End-of-Phase 2用于确认Phase III方案，Pre-NDA用于上市申请前确认资料完整性。Formal meetings with FDA强调问题清晰、背景简洁、Sponsor立场明确和数据支持充分。
+
+### CRP准备FDA会议材料
+- Clinical background：疾病负担、治疗格局、未满足需求。
+- Study rationale：为什么目标药物和设计能回答问题。
+- Key data：疗效、安全、PK/PD、biomarker。
+- Proposed design：人群、对照、终点、统计、安全监测。
+- Questions to FDA：必须可回答，避免问开放式“是否同意我们全部策略”。
+
+### 肿瘤终点
+FDA常见肿瘤终点包括OS、PFS、DFS、EFS、ORR、DoR、pCR和PRO。CRP要能解释每个终点的临床意义和局限。例如ORR在单臂后线研究中可支持早期信号，但DoR短或毒性高会削弱获益风险。
+`,
+  "reg-nmpa-cde-reference": `
+## NMPA/CDE参考包详解
+中国临床开发的关键问题包括：是否同步参与全球MRCT，中国样本量是否充分，中国患者疗效和安全方向是否一致，标准治疗是否与全球一致，是否需要桥接或上市后研究。
+
+### CDE沟通交流材料中CRP要准备什么
+- 中国疾病流行病学和治疗路径。
+- 中国可及标准治疗和对照合理性。
+- 全球数据与中国亚组数据。
+- 安全性在中国患者中的可解释性。
+- 拟申请适应证与研究人群是否一致。
+- 上市后研究或RMP建议。
+
+### 常见审评关注
+全球研究阳性但中国样本少；亚洲亚组方向不一致；对照在中国不是标准治疗；biomarker检测未在中国验证；安全数据库缺少中国长期暴露。
+`,
+  "reg-ema-pmda-reference": `
+## EMA / PMDA参考包详解
+EMA和PMDA都重视本地临床实践和获益风险。EMA常通过Scientific Advice提前沟通研究设计和终点，批准后通过RMP管理风险。PMDA关注日本人群数据和剂量/安全性外推。
+
+### CRP在欧洲/日本讨论中的价值
+CRP要把疾病和研究设计讲清楚：欧洲或日本患者是否与全球人群一致？对照是否符合当地实践？安全监测是否满足当地风险管理？如果本地样本少，是否有PK、机制和亚组数据支持外推？
+`,
+  "reg-meeting-playbook": `
+## 监管沟通会议准备清单详解
+### Pre-IND / 早期沟通
+CRP重点准备首次人体风险、起始剂量、DLT定义、安全监测、停药规则和研究者培训。
+
+### End-of-Phase 2 / EOP2
+CRP重点准备Phase II疗效和安全综述、剂量选择、人群选择、主要终点、对照、统计假设和Phase III风险。
+
+### CDE沟通交流会议
+CRP重点准备中国临床需求、目标人群、对照合理性、中国样本策略、安全管理和本地注册可行性。
+
+### Pre-NDA / Pre-BLA
+CRP重点准备CSR完成度、数据库成熟度、死亡/SAE随访、亚组、标签边界和获益风险叙事。
+
+### Advisory Committee
+CRP要能把复杂数据变成清楚故事：患者需要什么、研究证明了什么、风险是什么、如何管理、标签应该给谁。
+`
+};
+
 export const protocolStudyManual: Record<string, string> = {
   "keynote-522-deep-dive": `
 ## KEYNOTE-522详细解读
@@ -1212,6 +1305,7 @@ export function getDeepBody(cardId: string) {
     regulatoryManual[cardId],
     trialDesignManual[cardId],
     crpHandbookManual[cardId],
+    regulatoryAttachmentManual[cardId],
     protocolDeepDives[cardId],
     protocolStudyManual[cardId],
     caseAndTemplateContent[cardId]

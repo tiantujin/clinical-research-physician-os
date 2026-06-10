@@ -585,10 +585,13 @@ function renderMarkdown(markdown: string) {
     return `<a href="#" class="knowledge-link" data-module-id="${target.module.id}" data-card-id="${target.card.id}">${target.card.title}</a>`;
   });
 
+  const withLinks = linked.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a class="knowledge-link" href="$2" target="_blank" rel="noreferrer">$1</a>');
+  const withAcronyms = expandFirstAcronyms(withLinks);
+
   const withTerms = glossary.reduce((text, term) => {
     const escaped = term.term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     return text.replace(new RegExp(`\\b${escaped}\\b`, "g"), `<abbr class="term-tip" title="${term.definition}">${term.term}</abbr>`);
-  }, linked);
+  }, withAcronyms);
 
   return withTerms
     .split("\n")
@@ -596,6 +599,9 @@ function renderMarkdown(markdown: string) {
       if (line.startsWith("### ")) return `<h3>${line.slice(4)}</h3>`;
       if (line.startsWith("## ")) return `<h2>${line.slice(3)}</h2>`;
       if (line.startsWith("# ")) return `<h1>${line.slice(2)}</h1>`;
+      if (line.trim().startsWith("<iframe")) return line;
+      if (line.trim().startsWith("<div")) return line;
+      if (line.trim().startsWith("</div")) return line;
       if (line.startsWith("- ")) return `<li>${line.slice(2)}</li>`;
       if (line.trim() === "") return "";
       return `<p>${line}</p>`;
@@ -603,6 +609,70 @@ function renderMarkdown(markdown: string) {
     .join("")
     .replace(/(<li>.*?<\/li>)+/g, (match) => `<ul>${match}</ul>`)
     .replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+}
+
+function expandFirstAcronyms(text: string) {
+  const acronyms: Record<string, string> = {
+    ICH: "International Council for Harmonisation",
+    GCP: "Good Clinical Practice",
+    FDA: "U.S. Food and Drug Administration",
+    EMA: "European Medicines Agency",
+    NMPA: "National Medical Products Administration",
+    CDE: "Center for Drug Evaluation",
+    PMDA: "Pharmaceuticals and Medical Devices Agency",
+    IND: "Investigational New Drug",
+    CTA: "Clinical Trial Application",
+    NDA: "New Drug Application",
+    BLA: "Biologics License Application",
+    MAA: "Marketing Authorisation Application",
+    IRB: "Institutional Review Board",
+    IEC: "Independent Ethics Committee",
+    CSR: "Clinical Study Report",
+    SAP: "Statistical Analysis Plan",
+    IB: "Investigator's Brochure",
+    ICF: "Informed Consent Form",
+    SAE: "Serious Adverse Event",
+    AE: "Adverse Event",
+    SUSAR: "Suspected Unexpected Serious Adverse Reaction",
+    DSUR: "Development Safety Update Report",
+    PSUR: "Periodic Safety Update Report",
+    PBRER: "Periodic Benefit-Risk Evaluation Report",
+    RMP: "Risk Management Plan",
+    DMC: "Data Monitoring Committee",
+    DSMB: "Data and Safety Monitoring Board",
+    RBQM: "Risk-based Quality Management",
+    QbD: "Quality by Design",
+    RWE: "Real-world Evidence",
+    MRCT: "Multi-regional Clinical Trial",
+    OS: "Overall Survival",
+    PFS: "Progression-free Survival",
+    ORR: "Objective Response Rate",
+    HR: "Hazard Ratio",
+    CI: "Confidence Interval",
+    ITT: "Intention-to-Treat",
+    PP: "Per Protocol",
+    FAS: "Full Analysis Set"
+  };
+  const parts = text.split(/(<[^>]+>)/g);
+  let output = "";
+  const used = new Set<string>();
+  for (const part of parts) {
+    if (part.startsWith("<") && part.endsWith(">")) {
+      output += part;
+      continue;
+    }
+    let segment = part;
+    for (const [abbr, full] of Object.entries(acronyms)) {
+      if (used.has(abbr)) continue;
+      const pattern = new RegExp(`\\b${abbr.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`);
+      if (pattern.test(segment)) {
+        segment = segment.replace(pattern, `${full} (${abbr})`);
+        used.add(abbr);
+      }
+    }
+    output += segment;
+  }
+  return output;
 }
 
 function DrugDevelopmentFlow() {

@@ -2371,6 +2371,117 @@ ${commonInterview}
 `
       }
     ]
+  },
+  {
+    id: "regulatory-reference-library",
+    number: "23",
+    title: "法规原文与附件库",
+    description: "集中收录CRP OS中提到的重要法规、ICH指南、监管沟通文件和可下载附件。",
+    cards: [
+      {
+        id: "reg-attachment-ich-e6-r3",
+        title: "附件：ICH E6(R3) Step 4 Final Guideline",
+        summary: "2025年1月6日采纳的ICH E6(R3) GCP最终指南PDF，已嵌入网页内，可直接阅读。",
+        tags: ["ICH E6(R3)", "Attachment", "GCP", "2025"],
+        links: ["ich-e6-r3", "sponsor-role", "investigator-role", "essential-documents"],
+        body: `
+## 网页内阅读
+<div class="pdf-reader-shell">
+<iframe class="pdf-reader" title="ICH E6(R3) Step 4 Final Guideline PDF" src="./docs/ICH_E6R3_Step4_FinalGuideline_2025_0106.pdf"></iframe>
+</div>
+
+## 使用建议
+- 第一遍：读 Principles of ICH GCP，理解GCP原则。
+- 第二遍：读 Investigator 和 Sponsor，理解职责边界。
+- 第三遍：读 Data Governance、Computerised Systems、Essential Records，理解现代临床试验质量体系。
+`
+      },
+      {
+        id: "reg-ich-core-guidelines",
+        title: "ICH核心指南清单",
+        summary: "CRP必须熟悉的ICH E6、E8、E9、E2、E3、M4、E17等指南站内阅读版和学习用途。",
+        tags: ["ICH", "Guidelines", "Reference"],
+        links: ["ich-suite", "ich-e6-r3", "ich-m4"],
+        body: `
+## 清单
+- ICH E6(R3)：Good Clinical Practice。
+- ICH E8(R1)：General Considerations for Clinical Studies。
+- ICH E9：Statistical Principles for Clinical Trials。
+- ICH E9(R1)：Estimands and Sensitivity Analysis。
+- ICH E2A/E2D：Safety Data Management。
+- ICH E3：Clinical Study Reports。
+- ICH M4：Common Technical Document。
+- ICH E17：Multi-regional Clinical Trials。
+`
+      },
+      {
+        id: "reg-fda-reference",
+        title: "FDA法规与指导原则参考包",
+        summary: "FDA临床开发、肿瘤终点、IND安全报告、加速批准和会议沟通站内阅读版。",
+        tags: ["FDA", "Reference", "Guidance"],
+        links: ["fda-regulatory", "reviewer-benefit-risk", "accelerated-pathways"],
+        body: `
+## 重点方向
+- IND and NDA/BLA development pathway。
+- Formal meetings with FDA。
+- IND safety reporting。
+- Clinical trial endpoints for cancer drugs。
+- Accelerated Approval and confirmatory trials。
+- Real-world evidence programme。
+`
+      },
+      {
+        id: "reg-nmpa-cde-reference",
+        title: "NMPA/CDE法规与指导原则参考包",
+        summary: "中国临床试验、沟通交流、突破性治疗、附条件批准、真实世界证据和MRCT站内阅读版。",
+        tags: ["NMPA", "CDE", "China", "Reference"],
+        links: ["nmpa-cde-regulatory", "reviewer-china-data", "global-regulatory"],
+        body: `
+## 重点方向
+- 药物临床试验质量管理规范。
+- CDE沟通交流会议。
+- 突破性治疗药物程序。
+- 附条件批准。
+- 真实世界证据支持药物研发。
+- 国际多中心临床试验与中国人群数据。
+`
+      },
+      {
+        id: "reg-ema-pmda-reference",
+        title: "EMA / PMDA法规参考包",
+        summary: "欧洲和日本审评中CRP需要理解的Scientific Advice、RMP、条件批准和本地人群要求站内阅读版。",
+        tags: ["EMA", "PMDA", "Reference"],
+        links: ["ema-regulatory", "pmda-regulatory", "rmp"],
+        body: `
+## EMA重点
+- Scientific Advice。
+- PRIME。
+- Conditional Marketing Authorisation。
+- RMP and pharmacovigilance。
+
+## PMDA重点
+- Japan participation in MRCT。
+- Local PK/safety data。
+- Consultation with PMDA。
+`
+      },
+      {
+        id: "reg-meeting-playbook",
+        title: "监管沟通会议准备清单",
+        summary: "Pre-IND、EOP2、Pre-NDA、CDE沟通交流、AdCom的CRP准备清单。",
+        tags: ["Regulatory Meeting", "FDA", "CDE", "AdCom"],
+        links: ["global-regulatory", "protocol-review", "reviewer-benefit-risk"],
+        body: `
+## CRP准备问题
+- 当前数据能否支持下一阶段？
+- 目标人群和适应证边界是否清楚？
+- 主要终点是否可接受？
+- 安全性数据库是否足够？
+- 中国/亚洲人群数据是否可外推？
+- 是否需要确认性研究或上市后研究？
+`
+      }
+    ]
   }
 ];
 

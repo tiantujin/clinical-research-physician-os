@@ -68,6 +68,30 @@ textarea {
   text-decoration: none;
 }
 
+.pdf-reader-shell {
+  width: 100%;
+  margin: 1.25rem 0;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.pdf-reader {
+  display: block;
+  width: 100%;
+  height: min(78vh, 860px);
+  min-height: 560px;
+  border: 0;
+}
+
+@media (max-width: 768px) {
+  .pdf-reader {
+    height: 72vh;
+    min-height: 460px;
+  }
+}
+
 .theme-dark {
   background:
     radial-gradient(circle at 18% 8%, rgba(34, 166, 184, 0.16), transparent 28rem),
