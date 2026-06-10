@@ -1,3 +1,5 @@
+import { generatedMdxContent } from "@/lib/generatedMdxContent";
+
 export type QuizQuestion = {
   id: string;
   question: string;
@@ -1562,6 +1564,7 @@ export const quizzes: Record<string, QuizQuestion[]> = {
 
 export function getDeepBody(cardId: string) {
   return [
+    generatedMdxContent[cardId],
     deepContent[cardId],
     deepContentAdditions[cardId],
     ichE6Manual[cardId],
