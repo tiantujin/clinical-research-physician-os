@@ -1,0 +1,99 @@
+id: drug-stage-drug-discovery
+
+# Drug Discovery：从靶点到候选药物
+
+## 学习目标
+
+学完本章，你需要能用 Sponsor 语言解释一个药物为什么值得从科学假设推进到临床开发：靶点是否可信，疾病场景是否有未满足临床需求，机制是否能转化为可测量终点，候选分子是否有足够可开发性，以及失败风险在哪里。Clinical Research Physician（CRP，临床研究医生）不需要替代 discovery scientist，但必须能读懂 target package、preclinical efficacy package、translational plan，并判断这些证据是否足以支持 First-in-Human（FIH，首次人体研究）和后续 Proof of Concept（PoC，概念验证）策略。
+
+## 一句话理解
+
+Drug Discovery 是把“一个疾病生物学假设”逐步压缩成“一个可进入人体研究的候选药物”的过程。
+
+## 核心概念
+
+| 英文 | 中文 | CRP需要掌握到什么程度 |
+|---|---|---|
+| Target Identification | 靶点发现 | 能说明靶点与疾病发生发展的因果关系，而不只是相关性 |
+| Target Validation | 靶点验证 | 能判断证据来自遗传学、细胞、动物、患者样本还是临床先例 |
+| Lead Discovery | 先导化合物发现 | 能理解为什么某些分子具备初始活性但未必可成药 |
+| Lead Optimization | 先导优化 | 能理解效力、选择性、PK、毒性和可生产性之间的取舍 |
+| Candidate Selection | 候选药物确定 | 能读懂进入 IND-enabling studies 前的综合决策逻辑 |
+| Translational Biomarker | 转化标志物 | 能连接机制、患者筛选、药效监测和临床终点 |
+
+## 靶点发现：Target Identification
+
+靶点发现不是“找到一个热门蛋白”这么简单。Sponsor 首先要回答：这个靶点是否位于疾病驱动路径上？改变它是否可能改变临床结局？在肿瘤药物开发中，常见证据包括肿瘤组织表达、基因扩增或突变、通路激活、免疫微环境改变、患者预后相关性、以及已有同类药物临床验证。
+
+以 Triple-Negative Breast Cancer（TNBC，三阴性乳腺癌）为例，TROP2（Trophoblast Cell-Surface Antigen 2）成为 Antibody-Drug Conjugate（ADC，抗体偶联药物）靶点，并不是因为它“名字新”，而是因为它在多种上皮肿瘤中高表达、与侵袭性生物学相关、在正常组织中表达相对可管理，并且能够支持抗体介导内吞，从而递送 cytotoxic payload（细胞毒载荷）。CRP需要问的问题是：目标人群中表达分布如何？表达检测方法是否标准化？表达水平是否预测疗效？低表达患者是否仍可获益？如果靶点只是 prognostic biomarker（预后标志物）而不是 predictive biomarker（预测疗效标志物），临床设计就不能简单做 biomarker-enriched design（标志物富集设计）。
+
+## 靶点验证：Target Validation
+
+靶点验证的价值在于降低“机制漂亮但临床无效”的风险。验证证据通常分层：第一层是 human biology（人类生物学），如遗传学、人群队列、患者组织；第二层是 disease model（疾病模型），如 patient-derived xenograft（PDX，患者来源移植瘤）、organoid（类器官）或 humanized mouse（人源化小鼠）；第三层是 perturbation evidence（干预证据），如 knockdown、knockout、抗体阻断、小分子抑制；第四层是 clinical precedent（临床先例），即同靶点或同通路药物是否已显示有效。
+
+Sponsor 决策时最看重可转化性。动物模型中的 tumor growth inhibition（TGI，肿瘤生长抑制）如果使用不符合真实临床的高剂量、早期治疗窗口或免疫缺陷模型，就不能直接支持人群疗效判断。CRP在审阅 discovery summary 时，应主动标注哪些证据能进入 protocol rationale（方案依据），哪些只能作为探索性背景。
+
+## Lead Discovery 与 Lead Optimization
+
+Lead Discovery 产生的是“有活性的起点”，Lead Optimization 产生的是“可能成为药物的分子”。小分子开发关注 potency（效力）、selectivity（选择性）、solubility（溶解度）、metabolic stability（代谢稳定性）、off-target toxicity（脱靶毒性）。抗体和 ADC 更关注 binding affinity（结合亲和力）、internalization（内吞）、linker stability（连接子稳定性）、drug-to-antibody ratio（DAR，药物抗体比）、bystander effect（旁观者效应）、payload potency（载荷效力）和 manufacturability（可生产性）。
+
+CRP需要理解一个关键逻辑：更强不一定更好。ADC payload 过强、linker 过早释放、DAR过高，都可能带来骨髓抑制、间质性肺病（Interstitial Lung Disease, ILD）或肝毒性风险。免疫治疗也类似，过度激活免疫系统可能增加 immune-related Adverse Event（irAE，免疫相关不良事件）。因此 candidate selection 是疗效窗口、毒性窗口和商业可行性的平衡。
+
+## Candidate Selection：候选药物确定
+
+候选药物进入 preclinical development 前，Sponsor 通常会召开 Candidate Selection Review。常见输入包括：mechanism rationale（机制依据）、in vitro potency（体外效力）、in vivo efficacy（体内疗效）、ADME（吸收、分布、代谢、排泄）、preliminary toxicology（初步毒理）、CMC feasibility（化学制造与控制可行性）、IP landscape（专利格局）、competitive landscape（竞品格局）、target product profile（TPP，目标产品特征）。
+
+CRP参与点并不是替代科学团队判断分子，而是把 clinical development question 提前放进去：未来第一适应证是什么？目标人群是否能快速入组？是否需要 companion diagnostic（伴随诊断）？临床终点是 Objective Response Rate（ORR，客观缓解率）、Progression-Free Survival（PFS，无进展生存期）还是 pathological Complete Response（pCR，病理完全缓解）？安全性风险是否需要提前写入 Risk Management Plan（RMP，风险管理计划）？
+
+## ADC药物开发案例
+
+以 TROP2 ADC 为例，discovery 阶段的关键不是证明 TROP2 表达，而是证明“表达、内吞、payload递送和临床可管理毒性”共同成立。Sponsor 会比较不同 antibody clone、linker、payload 和 DAR。一个候选 ADC 如果在 TNBC PDX 中显示强 TGI，但在非人灵长类出现明显肺毒性或眼毒性，CRP应提醒团队：未来 protocol 必须前置 ILD/ocular toxicity 监测，入排标准要限制基线肺病，dose modification table（剂量调整表）必须清楚。
+
+## IO药物开发案例
+
+Immune Oncology（IO，肿瘤免疫）候选药物常遇到“动物模型有效但患者不一定有效”的转化鸿沟。PD-1/PD-L1 之后的 LAG3、TIGIT、TIM3 等靶点都需要更清楚的免疫微环境假设。CRP需要关注 biomarker strategy：是否只看 PD-L1？是否评估 tumor-infiltrating lymphocytes（TILs，肿瘤浸润淋巴细胞）、T cell exhaustion signature（T细胞耗竭特征）、TMB（Tumor Mutational Burden，肿瘤突变负荷）？如果机制需要“热肿瘤”，在 TNBC 中可能优先选择早线、PD-L1阳性或新辅助场景。
+
+## TNBC药物开发案例
+
+TNBC 的 discovery 策略经常围绕高复发风险、异质性、缺少驱动靶点、化疗基础治疗和免疫微环境。一个 TNBC 候选药物若只在 heavily pretreated metastatic setting（多线治疗转移性场景）显示弱 ORR，很难支撑大规模 Phase III。Sponsor 可能改为 biomarker-enriched Phase II、与免疫治疗联合、或转向 neoadjuvant（新辅助）以 pCR/EFS 为终点。CRP要能把疾病自然史、现有治疗格局和临床终点连接起来。
+
+## 常见失败原因
+
+1. 靶点是相关而非驱动。
+2. 动物模型不能代表目标人群。
+3. biomarker 不可重复、不可标准化。
+4. 疗效窗口被毒性窗口压缩。
+5. 竞品改变治疗格局，原本终点失去价值。
+6. 早期只追求 ORR，忽视 Duration of Response（DoR，缓解持续时间）和 PFS。
+7. CMC 难以放大，导致临床供药或质量一致性问题。
+
+## Sponsor决策逻辑
+
+Sponsor 不是问“这个科学是否有趣”，而是问“这个假设是否值得把患者、时间和资本投入临床验证”。Go decision（推进决策）通常需要同时满足：未满足需求明确、机制有临床可转化证据、候选物有可管理安全窗口、竞争格局仍有进入空间、临床路径可执行、监管路径可沟通、TPP有差异化价值。
+
+## CRP需要了解什么
+
+CRP最重要的能力是把 discovery language 翻译成 protocol language：靶点证据变成研究背景，生物标志物变成入组或分层策略，毒理信号变成安全监测，竞品格局变成终点和对照选择，TPP变成注册策略。面试中不要求你会做分子筛选，但会考你是否理解“为什么这个药值得做人体研究”。
+
+## 面试可能怎么问
+
+**问题：临床医生为什么需要理解 Drug Discovery？**  
+优秀回答：CRP虽然不负责发现分子，但需要判断早期科学证据能否支持临床开发。比如一个 ADC 项目进入 FIH 前，我会关注靶点表达、内吞、payload机制、非临床毒性、潜在人群和竞品格局，因为这些会直接影响起始剂量、剂量递增、安全监测、biomarker和后续适应证选择。
+
+**问题：靶点验证和临床有效性之间最大的风险是什么？**  
+优秀回答：最大风险是转化失败。靶点在模型中有效不代表患者获益，尤其肿瘤模型、免疫微环境和真实治疗线数差异很大。因此需要用人类样本、临床先例、转化标志物和早期临床药效数据共同降低不确定性。
+
+## 小测验
+
+1. 判断题：靶点表达高就一定适合 ADC 开发。答案：错。还需要内吞、正常组织表达、安全窗口、payload与linker可行性。
+2. 单选题：Candidate Selection 最接近哪个决策？A 是否发表论文 B 是否进入IND-enabling studies C 是否上市 D 是否定价。答案：B。
+3. 判断题：CRP在Discovery阶段完全没有价值。答案：错。CRP可以提前输入疾病场景、终点、人群、风险管理和临床可执行性。
+
+## 速查表
+
+| 决策问题 | CRP视角 |
+|---|---|
+| 靶点是否可信 | 是否与疾病驱动相关，是否有人类证据 |
+| 候选药是否可开发 | 疗效窗口、毒性窗口、CMC和给药方式 |
+| 目标人群是谁 | 生物标志物、治疗线数、竞品和入组可行性 |
+| 临床如何验证 | FIH、剂量递增、扩展队列、PoC终点 |
