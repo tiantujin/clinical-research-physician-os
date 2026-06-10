@@ -10,6 +10,7 @@ import {
   Database,
   Download,
   FileDown,
+  Flag,
   Heart,
   Highlighter,
   Languages,
@@ -27,6 +28,7 @@ import {
   X
 } from "lucide-react";
 import { modules, glossary, learningPaths, type KnowledgeCard, type Module } from "@/lib/content";
+import { getDeepBody, interviewTwenty, quizzes, todayRecommendations, twelveWeekPlan, type QuizQuestion } from "@/lib/deepContent";
 import { useLocalKnowledgeStore } from "@/lib/useLocalKnowledgeStore";
 
 const stageFlow = ["Discovery", "Preclinical", "IND", "Phase I", "Phase II", "Phase III", "NDA/BLA", "Post Marketing"];
@@ -43,12 +45,17 @@ export default function Home() {
     progress,
     favorites,
     highlights,
+    review,
+    quizAnswers,
+    wrongQuestions,
     notes,
     recent,
     importedMarkdown,
     toggleFavorite,
     toggleProgress,
     toggleHighlight,
+    toggleReview,
+    answerQuiz,
     recordVisit,
     setNote,
     setImportedMarkdown,
@@ -60,13 +67,17 @@ export default function Home() {
   const activeModule = modules.find((module) => module.id === activeModuleId) ?? modules[0];
   const activeCard = activeModule.cards.find((card) => card.id === activeCardId) ?? activeModule.cards[0];
   const allCards = useMemo(() => modules.flatMap((module) => module.cards.map((card) => ({ ...card, module }))), []);
+  const activeDeepBody = useMemo(() => {
+    const deep = activeCard.id === "crp-interview-20" ? interviewTwenty : getDeepBody(activeCard.id);
+    return [activeCard.body, deep].filter(Boolean).join("\n");
+  }, [activeCard]);
 
   const searchResults = useMemo(() => {
     const term = query.trim().toLowerCase();
     if (!term && !selectedTag) return [];
     return allCards
       .filter((item) => {
-        const text = [item.title, item.summary, item.body, item.tags.join(" "), item.module.title].join(" ").toLowerCase();
+        const text = [item.title, item.summary, item.body, getDeepBody(item.id), item.tags.join(" "), item.module.title].join(" ").toLowerCase();
         const matchesQuery = term ? text.includes(term) : true;
         const matchesTag = selectedTag ? item.tags.includes(selectedTag) : true;
         return matchesQuery && matchesTag;
@@ -86,6 +97,7 @@ export default function Home() {
 
   const completedCount = activeModule.cards.filter((card) => progress[card.id]).length;
   const overallProgress = Math.round((Object.values(progress).filter(Boolean).length / allCards.length) * 100);
+  const wrongCount = Object.values(wrongQuestions).filter(Boolean).length;
 
   function selectCard(moduleId: string, cardId: string) {
     setActiveModuleId(moduleId);
@@ -226,6 +238,16 @@ export default function Home() {
 
           <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_330px]">
             <article className="space-y-4">
+              {activeModule.id === "drug-dev" && activeCard.id === "drug-lifecycle" && (
+                <LearningDashboard
+                  allCards={allCards}
+                  progress={progress}
+                  review={review}
+                  favorites={favorites}
+                  recentCards={recentCards}
+                  onNavigate={selectCard}
+                />
+              )}
               <ModuleHero module={activeModule} completedCount={completedCount} />
               <CardTabs module={activeModule} activeCardId={activeCard.id} onSelect={(cardId) => setActiveCardId(cardId)} progress={progress} />
 
@@ -245,6 +267,24 @@ export default function Home() {
                     <p className="mt-2 max-w-3xl text-slate-600">{activeCard.summary}</p>
                   </div>
                   <div className="flex shrink-0 gap-2">
+                    <button
+                      className={`inline-flex items-center justify-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition ${
+                        progress[activeCard.id] ? "border-clinical-blue bg-clinical-blue text-white" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+                      }`}
+                      onClick={() => toggleProgress(activeCard.id)}
+                    >
+                      <CheckCircle2 size={17} />
+                      {progress[activeCard.id] ? "已掌握" : "开始学习"}
+                    </button>
+                    <button
+                      className={`inline-flex items-center justify-center gap-2 rounded-md border px-3 py-2 text-sm font-bold transition ${
+                        review[activeCard.id] ? "border-clinical-amber bg-clinical-amber text-clinical-ink" : "border-slate-200 bg-white text-slate-700 hover:bg-slate-50"
+                      }`}
+                      onClick={() => toggleReview(activeCard.id)}
+                    >
+                      <Flag size={17} />
+                      {review[activeCard.id] ? "复习中" : "加入复习"}
+                    </button>
                     <IconButton active={Boolean(progress[activeCard.id])} label="标记完成" onClick={() => toggleProgress(activeCard.id)} icon={<CheckCircle2 size={18} />} />
                     <IconButton active={Boolean(favorites[activeCard.id])} label="收藏" onClick={() => toggleFavorite(activeCard.id)} icon={<Star size={18} />} />
                     <IconButton active={Boolean(highlights[activeCard.id])} label="重点高亮" onClick={() => toggleHighlight(activeCard.id)} icon={<Highlighter size={18} />} />
@@ -257,7 +297,8 @@ export default function Home() {
                 {activeModule.id === "statistics" && <StatsVisual />}
                 {activeModule.id === "learning-paths" && <LearningPathPanel progress={progress} />}
 
-                <MarkdownView card={activeCard} onNavigate={selectCard} />
+                <MarkdownView body={activeDeepBody} onNavigate={selectCard} />
+                <QuizBlock questions={quizzes[activeCard.id] ?? []} quizAnswers={quizAnswers} onAnswer={answerQuiz} />
               </section>
             </article>
 
@@ -270,6 +311,8 @@ export default function Home() {
                 onNoteChange={(value) => setNote(activeCard.id, value)}
                 favoriteCount={Object.values(favorites).filter(Boolean).length}
                 completedCount={Object.values(progress).filter(Boolean).length}
+                reviewCount={Object.values(review).filter(Boolean).length}
+                wrongCount={wrongCount}
                 importedMarkdown={importedMarkdown}
               />
             </aside>
@@ -366,8 +409,103 @@ function IconButton({ active, label, icon, onClick }: { active: boolean; label: 
   );
 }
 
-function MarkdownView({ card, onNavigate }: { card: KnowledgeCard; onNavigate: (moduleId: string, cardId: string) => void }) {
-  const html = useMemo(() => renderMarkdown(card.body), [card.body]);
+function LearningDashboard({
+  allCards,
+  progress,
+  review,
+  favorites,
+  recentCards,
+  onNavigate
+}: {
+  allCards: Array<KnowledgeCard & { module: Module }>;
+  progress: Record<string, boolean>;
+  review: Record<string, boolean>;
+  favorites: Record<string, boolean>;
+  recentCards: Array<KnowledgeCard & { module: Module }>;
+  onNavigate: (moduleId: string, cardId: string) => void;
+}) {
+  const completed = Object.values(progress).filter(Boolean).length;
+  const reviewCount = Object.values(review).filter(Boolean).length;
+  const favoriteCount = Object.values(favorites).filter(Boolean).length;
+  const priorityCards = allCards.filter((item) => ["ich-e6-r3", "ae-sae", "protocol-review", "analysis-sets", "keynote-355-deep-dive", "ascent-deep-dive"].includes(item.id));
+
+  return (
+    <section className="rounded-lg border border-slate-200 bg-white p-5 shadow-soft md:p-7">
+      <div className="mb-5 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div>
+          <div className="text-xs font-bold uppercase tracking-[0.18em] text-clinical-cyan">Learning Dashboard</div>
+          <h2 className="mt-1 text-2xl font-bold text-clinical-ink md:text-3xl">今日学习仪表盘</h2>
+          <p className="mt-2 max-w-3xl text-slate-600">按12周路线学习，每天完成一个概念、一个案例和一个输出任务。这里优先推荐入职前最常用的CRP核心能力。</p>
+        </div>
+        <div className="grid grid-cols-4 gap-2 text-center">
+          <div className="rounded-md bg-clinical-sky p-3"><div className="text-xl font-bold">{completed}</div><div className="text-xs text-slate-500">已完成</div></div>
+          <div className="rounded-md bg-clinical-mint p-3"><div className="text-xl font-bold">{reviewCount}</div><div className="text-xs text-slate-500">待复习</div></div>
+          <div className="rounded-md bg-slate-50 p-3"><div className="text-xl font-bold">{favoriteCount}</div><div className="text-xs text-slate-500">收藏</div></div>
+          <div className="rounded-md bg-slate-50 p-3"><div className="text-xl font-bold">{priorityCards.length}</div><div className="text-xs text-slate-500">高优先级</div></div>
+        </div>
+      </div>
+
+      <div className="grid gap-4 xl:grid-cols-[1fr_1.3fr]">
+        <div className="space-y-3">
+          <h3 className="font-bold text-clinical-ink">今日推荐</h3>
+          {todayRecommendations.map((item) => (
+            <button key={item.cardId} className="flex w-full items-center justify-between rounded-md border border-slate-200 bg-slate-50 p-3 text-left hover:border-clinical-blue hover:bg-clinical-sky" onClick={() => onNavigate(item.moduleId, item.cardId)}>
+              <span className="font-bold text-clinical-ink">{item.title}</span>
+              <ChevronRight size={16} />
+            </button>
+          ))}
+          <h3 className="pt-2 font-bold text-clinical-ink">快速入口</h3>
+          <div className="grid grid-cols-2 gap-2">
+            {[
+              ["今天学一个概念", "ich", "ich-e6-r3"],
+              ["今天拆一个Protocol", "protocol-dissection", "keynote-355-deep-dive"],
+              ["今天做一道面试题", "interview", "crp-interview-20"],
+              ["今天看一个Safety Case", "pv", "ae-sae"],
+              ["今天更新Portfolio", "my-crp-portfolio", "portfolio-我的职业转型记录"]
+            ].map(([label, moduleId, cardId]) => (
+              <button key={label} className="rounded-md bg-white p-3 text-left text-sm font-bold text-clinical-blue ring-1 ring-slate-200 hover:bg-clinical-sky" onClick={() => onNavigate(moduleId, cardId)}>
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h3 className="mb-3 font-bold text-clinical-ink">临床医生转CRP 12周学习路线</h3>
+          <div className="crp-scrollbar max-h-[420px] space-y-2 overflow-y-auto pr-1">
+            {twelveWeekPlan.map((week) => (
+              <div key={week.week} className="rounded-md border border-slate-200 bg-slate-50 p-3">
+                <div className="flex items-center gap-2">
+                  <span className="rounded bg-clinical-blue px-2 py-1 text-xs font-bold text-white">{week.week}</span>
+                  <span className="font-bold text-clinical-ink">{week.goal}</span>
+                </div>
+                <div className="mt-2 text-sm leading-6 text-slate-600">输出任务：{week.output}</div>
+                <div className="mt-1 text-sm leading-6 text-slate-600">自测题：{week.quiz}</div>
+                <div className="mt-1 text-sm leading-6 text-slate-600">推荐复习：{week.review}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {recentCards.length > 0 && (
+        <div className="mt-5 border-t border-slate-100 pt-4">
+          <h3 className="mb-2 font-bold text-clinical-ink">最近学习记录</h3>
+          <div className="flex flex-wrap gap-2">
+            {recentCards.slice(0, 6).map((item) => (
+              <button key={item.id} className="rounded-md bg-clinical-sky px-3 py-2 text-sm font-bold text-clinical-blue" onClick={() => onNavigate(item.module.id, item.id)}>
+                {item.title}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
+  );
+}
+
+function MarkdownView({ body, onNavigate }: { body: string; onNavigate: (moduleId: string, cardId: string) => void }) {
+  const html = useMemo(() => renderMarkdown(body), [body]);
   return (
     <div
       className="prose prose-slate max-w-none prose-headings:text-clinical-ink prose-a:no-underline prose-strong:text-clinical-ink"
@@ -384,6 +522,59 @@ function MarkdownView({ card, onNavigate }: { card: KnowledgeCard; onNavigate: (
       }}
       dangerouslySetInnerHTML={{ __html: html }}
     />
+  );
+}
+
+function QuizBlock({
+  questions,
+  quizAnswers,
+  onAnswer
+}: {
+  questions: QuizQuestion[];
+  quizAnswers: Record<string, number>;
+  onAnswer: (questionId: string, selectedIndex: number, isCorrect: boolean) => void;
+}) {
+  if (questions.length === 0) return null;
+  return (
+    <section className="mt-8 rounded-lg border border-clinical-sky bg-clinical-sky/40 p-4">
+      <div className="mb-4 flex items-center gap-2 font-bold text-clinical-ink">
+        <Target size={18} />
+        本节小测验
+      </div>
+      <div className="space-y-4">
+        {questions.map((question, questionIndex) => {
+          const selected = quizAnswers[question.id];
+          const answered = selected !== undefined;
+          return (
+            <div key={question.id} className="rounded-md border border-slate-200 bg-white p-4">
+              <div className="font-bold text-clinical-ink">{questionIndex + 1}. {question.question}</div>
+              <div className="mt-3 grid gap-2 md:grid-cols-2">
+                {question.options.map((option, optionIndex) => {
+                  const isSelected = selected === optionIndex;
+                  const isAnswer = question.answer === optionIndex;
+                  return (
+                    <button
+                      key={option}
+                      className={`rounded-md border p-3 text-left text-sm transition ${
+                        answered && isAnswer
+                          ? "border-green-500 bg-green-50 text-green-800"
+                          : answered && isSelected
+                            ? "border-clinical-rose bg-red-50 text-red-700"
+                            : "border-slate-200 bg-slate-50 text-slate-700 hover:border-clinical-blue"
+                      }`}
+                      onClick={() => onAnswer(question.id, optionIndex, optionIndex === question.answer)}
+                    >
+                      {option}
+                    </button>
+                  );
+                })}
+              </div>
+              {answered && <p className="mt-3 text-sm leading-6 text-slate-600">解析：{question.explanation}</p>}
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 }
 
@@ -599,12 +790,16 @@ function PersonalPanel({
   onNoteChange,
   favoriteCount,
   completedCount,
+  reviewCount,
+  wrongCount,
   importedMarkdown
 }: {
   note: string;
   onNoteChange: (value: string) => void;
   favoriteCount: number;
   completedCount: number;
+  reviewCount: number;
+  wrongCount: number;
   importedMarkdown: string;
 }) {
   return (
@@ -623,6 +818,16 @@ function PersonalPanel({
           <Target size={16} className="text-clinical-slate" />
           <div className="mt-1 text-xl font-bold">{completedCount}</div>
           <div className="text-xs text-slate-500">完成节点</div>
+        </div>
+        <div className="rounded-md bg-slate-50 p-3">
+          <Flag size={16} className="text-clinical-amber" />
+          <div className="mt-1 text-xl font-bold">{reviewCount}</div>
+          <div className="text-xs text-slate-500">待复习</div>
+        </div>
+        <div className="rounded-md bg-slate-50 p-3">
+          <Target size={16} className="text-clinical-rose" />
+          <div className="mt-1 text-xl font-bold">{wrongCount}</div>
+          <div className="text-xs text-slate-500">错题本</div>
         </div>
       </div>
       <label className="mb-2 flex items-center gap-2 text-sm font-bold text-clinical-ink">

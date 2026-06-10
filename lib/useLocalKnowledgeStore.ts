@@ -6,6 +6,9 @@ export type LocalKnowledgeStoreData = {
   progress: Record<string, boolean>;
   favorites: Record<string, boolean>;
   highlights: Record<string, boolean>;
+  review: Record<string, boolean>;
+  quizAnswers: Record<string, number>;
+  wrongQuestions: Record<string, boolean>;
   notes: Record<string, string>;
   recent: string[];
   importedMarkdown: string;
@@ -17,6 +20,9 @@ const emptyStore: LocalKnowledgeStoreData = {
   progress: {},
   favorites: {},
   highlights: {},
+  review: {},
+  quizAnswers: {},
+  wrongQuestions: {},
   notes: {},
   recent: [],
   importedMarkdown: ""
@@ -57,6 +63,19 @@ export function useLocalKnowledgeStore() {
       setStore((current) => ({
         ...current,
         highlights: { ...current.highlights, [cardId]: !current.highlights[cardId] }
+      }));
+    },
+    toggleReview(cardId: string) {
+      setStore((current) => ({
+        ...current,
+        review: { ...current.review, [cardId]: !current.review[cardId] }
+      }));
+    },
+    answerQuiz(questionId: string, selectedIndex: number, isCorrect: boolean) {
+      setStore((current) => ({
+        ...current,
+        quizAnswers: { ...current.quizAnswers, [questionId]: selectedIndex },
+        wrongQuestions: { ...current.wrongQuestions, [questionId]: !isCorrect }
       }));
     },
     recordVisit(cardId: string) {

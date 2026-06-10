@@ -1665,6 +1665,19 @@ ${commonInterview}
 `
       },
       {
+        id: "crp-interview-20",
+        title: "20道CRP核心面试题",
+        summary: "第一批可直接背诵和改写的CRP面试题，覆盖动机、GCP、PV、统计、Protocol和乳腺外科背景转型表达。",
+        tags: ["Interview", "CRP", "Breast Surgeon", "TNBC"],
+        links: ["why-pharma", "ae-sae", "analysis-sets", "protocol-review"],
+        body: `
+## 使用方式
+- 先读普通答案，理解面试官考点。
+- 再背优秀答案结构。
+- 最后结合自己的临床、论文、课题或TNBC经验改写。
+`
+      },
+      {
         id: "endpoint-evaluation",
         title: "如何评价临床终点",
         summary: "终点要同时满足临床意义、可测量性、监管接受度和可执行性。",
