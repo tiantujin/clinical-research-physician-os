@@ -832,6 +832,110 @@ const reviewerExpansionCards: KnowledgeCard[] = [
   }
 ];
 
+const medicalStrategyCards: KnowledgeCard[] = [
+  {
+    id: "medical-strategy-core",
+    title: "Medical Strategy Core",
+    summary: "把疾病格局、产品证据、竞品、监管、KOL洞察和证据缺口整合成医学策略。",
+    tags: ["Medical Strategy", "Medical Affairs", "TNBC", "ADC"],
+    links: ["phase-transition", "reviewer-benefit-risk", "tnbc-landscape", "evidence-generation-strategy"],
+    body: `
+## 学习目标
+- 从Clinical Development证据生成，升级到Medical Affairs证据转化。
+- 能围绕TNBC、ADC、Post-IO和HER2-low制定医学策略。
+`
+  }
+];
+
+const evidenceGenerationCards: KnowledgeCard[] = [
+  {
+    id: "evidence-generation-strategy",
+    title: "Evidence Generation Strategy",
+    summary: "围绕注册后证据缺口设计RWE、IIT、Registry、PASS和Publication Plan。",
+    tags: ["Evidence Generation", "RWE", "IIT", "Post-Marketing"],
+    links: ["rwe", "drug-stage-post-marketing", "reviewer-benefit-risk", "medical-strategy-core"],
+    body: `
+## 学习目标
+- 把注册研究无法回答的问题转化为上市后证据计划。
+- 重点训练ADC序贯、Post-IO、特殊人群和中国真实世界证据。
+`
+  }
+];
+
+const kolEngagementCards: KnowledgeCard[] = [
+  {
+    id: "kol-engagement-strategy",
+    title: "KOL Engagement Strategy",
+    summary: "从KOL拜访升级为合规、可行动、可回流策略的医学共创。",
+    tags: ["KOL", "Advisory Board", "Medical Affairs", "Oncology"],
+    links: ["kol-communication", "medical-strategy-core", "medical-communication-platform", "adc-development-map"],
+    body: `
+## 学习目标
+- 能设计TNBC/ADC Advisory Board议题。
+- 能把专家反馈转化为Protocol、RWE、医学教育和证据缺口。
+`
+  }
+];
+
+const medicalCommunicationCards: KnowledgeCard[] = [
+  {
+    id: "medical-communication-platform",
+    title: "Medical Communication Platform",
+    summary: "把复杂临床数据转化为准确、平衡、合规的科学叙事。",
+    tags: ["Medical Communication", "Data Story", "Compliance"],
+    links: ["medical-input-csr", "endpoint-evaluation", "reviewer-benefit-risk", "kol-engagement-strategy"],
+    body: `
+## 学习目标
+- 能解释PFS/OS/ORR/DoR/亚组/安全性，不夸大、不遗漏、不越界。
+- 能为ADC、IO和TNBC研究建立科学沟通平台。
+`
+  }
+];
+
+const lifecycleManagementCards: KnowledgeCard[] = [
+  {
+    id: "lifecycle-launch-readiness",
+    title: "Lifecycle Management & Launch Readiness",
+    summary: "连接NDA、Post-Marketing、RWE、KOL和医学教育，形成上市前后医学闭环。",
+    tags: ["Lifecycle Management", "Launch Readiness", "Post-Marketing", "ADC"],
+    links: ["drug-stage-nda-bla-maa", "drug-stage-post-marketing", "rmp", "evidence-generation-strategy"],
+    body: `
+## 学习目标
+- 能制定ADC产品上市准备医学清单。
+- 能围绕后线到前线、单药到联合、特殊人群和安全优化设计生命周期计划。
+`
+  }
+];
+
+const medicalAffairsInterviewCards: KnowledgeCard[] = [
+  {
+    id: "medical-affairs-interview",
+    title: "Medical Affairs Interview",
+    summary: "医生转MA、Medical Advisor、Medical Manager、Medical Director的高频题与答案。",
+    tags: ["Medical Affairs Interview", "Career", "Medical Director"],
+    links: ["interview-deep-answers", "medical-strategy-core", "evidence-generation-strategy", "kol-engagement-strategy"],
+    body: `
+## 学习目标
+- 把临床、CRP和肿瘤研发经验转化为MA面试语言。
+- 能回答医学策略、KOL、RWE、off-label、ADC策略等高频问题。
+`
+  }
+];
+
+const medicalAffairsPlaybookCards: KnowledgeCard[] = [
+  {
+    id: "medical-affairs-playbook",
+    title: "Medical Affairs Playbook",
+    summary: "医学部入职后90天工作手册：产品、证据、KOL、合规、策略和跨职能协作。",
+    tags: ["Medical Affairs Playbook", "90 Days", "Toolkit"],
+    links: ["clinical-development-toolkit", "medical-training", "medical-review", "lifecycle-launch-readiness"],
+    body: `
+## 学习目标
+- 明确MA入职后30/60/90天应读什么、产出什么、如何与研发和商业协作。
+`
+  }
+];
+
 const commonInterview = `
 ## 面试高频问法
 - 你如何把医学判断转化为方案设计建议？
@@ -1339,6 +1443,18 @@ ${commonInterview}
         body: `
 ## 学习目标
 - 理解登记研究的数据质量、偏倚和CRP可用场景。
+`
+      },
+      {
+        id: "fixed-sequence-multiplicity",
+        title: "Fixed Sequence / Multiplicity / Alpha Allocation",
+        summary: "III期注册研究中多重性、固定序贯、alpha分配、层级检验和图形化检验的CRP读法。",
+        tags: ["Multiplicity", "Fixed Sequence", "Alpha Allocation", "Phase III"],
+        links: ["adaptive-design", "alpha-beta", "power-sample-size", "reviewer-benefit-risk"],
+        body: `
+## 学习目标
+- 读懂PFS、OS、ORR、DoR、PRO和亚组之间的统计层级。
+- 能判断哪些结果可作为正式阳性，哪些只能作为描述性或支持性结果。
 `
       }
     ]
@@ -2439,15 +2555,64 @@ ${commonInterview}
     cards: oncologyLandscapeCards
   },
   {
-    id: "my-crp-portfolio",
+    id: "medical-strategy",
     number: "21",
+    title: "Medical Strategy",
+    description: "医学策略：把研发证据、审评逻辑、KOL洞察、竞品格局和医学教育整合为产品医学定位。",
+    cards: medicalStrategyCards
+  },
+  {
+    id: "evidence-generation",
+    number: "22",
+    title: "Evidence Generation",
+    description: "证据生成：连接注册研究、RWE、IIT、Registry、PASS和上市后证据缺口。",
+    cards: evidenceGenerationCards
+  },
+  {
+    id: "kol-engagement",
+    number: "23",
+    title: "KOL Engagement",
+    description: "KOL策略：从专家拜访升级为合规、可行动、可回流的医学共创。",
+    cards: kolEngagementCards
+  },
+  {
+    id: "medical-communication",
+    number: "24",
+    title: "Medical Communication",
+    description: "医学沟通：把复杂研究数据转化为准确、平衡、合规的科学叙事。",
+    cards: medicalCommunicationCards
+  },
+  {
+    id: "lifecycle-management",
+    number: "25",
+    title: "Lifecycle Management",
+    description: "生命周期管理：连接NDA、Post-Marketing、RWE、Launch Readiness和医学策略。",
+    cards: lifecycleManagementCards
+  },
+  {
+    id: "medical-affairs-interview",
+    number: "26",
+    title: "Medical Affairs Interview",
+    description: "医学部面试：医生转MA、Medical Advisor、Medical Manager、Medical Director的策略型答案。",
+    cards: medicalAffairsInterviewCards
+  },
+  {
+    id: "medical-affairs-playbook",
+    number: "27",
+    title: "Medical Affairs Playbook",
+    description: "医学部实战手册：入职90天、医学策略会议、安全教育、KOL洞察和跨职能协作。",
+    cards: medicalAffairsPlaybookCards
+  },
+  {
+    id: "my-crp-portfolio",
+    number: "28",
     title: "My CRP Portfolio",
     description: "个人Portfolio模块：沉淀论文、基金、课题、会议、综述、面试案例和职业转型记录。",
     cards: portfolioCards
   },
   {
     id: "future-ai-extension",
-    number: "22",
+    number: "29",
     title: "Future AI Extension",
     description: "仅保留未来AI扩展入口，当前版本不接入任何外部AI接口。",
     cards: [
@@ -2479,9 +2644,9 @@ ${commonInterview}
   },
   {
     id: "regulatory-reference-library",
-    number: "23",
+    number: "30",
     title: "法规原文与附件库",
-    description: "集中收录CRP OS中提到的重要法规、ICH指南、监管沟通文件和可下载附件。",
+    description: "集中收录CDMA-OS中提到的重要法规、ICH指南、监管沟通文件和可下载附件。",
     cards: [
       {
         id: "reg-attachment-ich-e6-r3",
