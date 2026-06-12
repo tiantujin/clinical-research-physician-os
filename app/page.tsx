@@ -125,8 +125,8 @@ export default function Home() {
         >
           <div className="mb-5 flex items-center justify-between">
             <div>
-              <div className="text-xs font-bold uppercase tracking-[0.18em] text-clinical-blue">CRP OS</div>
-              <h1 className="mt-1 text-xl font-bold text-clinical-ink">Clinical Research Physician OS</h1>
+              <div className="text-xs font-bold uppercase tracking-[0.18em] text-clinical-blue">CDMA-OS</div>
+              <h1 className="mt-1 text-xl font-bold text-clinical-ink">Clinical Development & Medical Affairs OS</h1>
             </div>
             <button className="rounded-md p-2 text-slate-500 hover:bg-slate-100 lg:hidden" onClick={() => setSidebarOpen(false)} aria-label="Close navigation">
               <X size={18} />
