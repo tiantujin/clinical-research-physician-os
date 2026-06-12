@@ -18,9 +18,9 @@ export type WeekPlan = {
 };
 
 export const todayRecommendations = [
-  { title: "先学习 ICH E6(R3)：Sponsor职责", moduleId: "ich", cardId: "ich-e6-r3" },
-  { title: "再学习 AE/SAE/SUSAR 医学判断", moduleId: "pv", cardId: "ae-sae" },
-  { title: "最后完成 KEYNOTE-355 Protocol拆解", moduleId: "protocol-dissection", cardId: "keynote-355-deep-dive" }
+  { title: "先学习 ICH E6(R3)：Sponsor职责", moduleId: "foundation", cardId: "ich-e6-r3" },
+  { title: "再学习 AE/SAE/SUSAR 医学判断", moduleId: "foundation", cardId: "ae-sae" },
+  { title: "最后完成 KEYNOTE-355 Protocol拆解", moduleId: "clinical-development", cardId: "keynote-355-deep-dive" }
 ];
 
 export const twelveWeekPlan: WeekPlan[] = [
