@@ -1,0 +1,69 @@
+id: fixed-sequence-multiplicity
+
+# Fixed Sequence、Multiplicity 与 Alpha Allocation：CRP必须读懂的III期统计控制
+
+## 为什么这是CDMA-OS必须补的缺口
+
+很多医生读III期研究时只看主要终点是否阳性，但药企Clinical Development和Medical Affairs团队必须看得更深：一个研究是否能支持标签，不仅取决于P值，还取决于多重性是否被控制、关键次要终点是否在统计层级内、alpha是否被合理分配、期中分析是否消耗错误率、亚组和探索性终点能否写进医学沟通。FDA、NMPA、EMA都会关注这个问题，因为多重比较会增加假阳性风险。
+
+## Multiplicity是什么
+
+Multiplicity（多重性）指一个研究中存在多个统计检验：多个主要终点、多个关键次要终点、多个剂量、多个亚组、多个时间点、多个中期分析。如果每个检验都用双侧0.05判断，整体Type I Error（一类错误）会膨胀。Reviewer会问：你声称的获益是不是预设的、受保护的、统计上可解释的？
+
+## Fixed Sequence Testing
+
+Fixed Sequence Testing（固定序贯检验）是最常见的多重性控制方法之一。Sponsor预先规定检验顺序，例如先检验PFS；PFS显著后，才能检验OS；OS显著后，才能检验ORR或QoL。优点是逻辑清楚、alpha不分散；缺点是前一个终点失败会“阻断”后续终点，即使后续名义P值显著，也不能宣称统计显著。
+
+### TNBC案例
+
+一个TNBC一线ADC+IO研究设定：主要终点PFS；关键次要终点OS、ORR、DoR、PRO。若PFS显著、OS未成熟但方向有利，Sponsor可以基于PFS和安全性讨论批准可能性；但如果PFS未显著而ORR显著，医学沟通必须非常谨慎，不能把ORR当作受保护阳性终点。
+
+## Alpha Allocation
+
+Alpha Allocation（alpha分配）是把总的一类错误率分给不同终点或人群。例如HER2-low研究可能同时检验HR阳性人群和全人群，或者PD-L1阳性TNBC和ITT人群。常见策略包括按人群分配alpha、按终点层级传递alpha、或使用graphical testing（图形化检验）在终点间回收alpha。
+
+CRP不需要替代统计师设计方案，但必须知道三个问题：
+
+1. 主要终点和关键次要终点是否在统计层级内。
+2. 研究发表或医学沟通中哪些结果只能描述，不能宣称正式阳性。
+3. 标签讨论中哪些数据可能被Reviewer接受为“支持性”，哪些可成为“核心证据”。
+
+## Hierarchical Testing 与 Graphical Testing
+
+Hierarchical Testing（层级检验）强调顺序；Graphical Testing更灵活，可在多个终点和人群之间分配和传递alpha。比如一个III期乳腺癌研究同时关注PFS、OS、pCR/EFS、PD-L1阳性亚组和ITT人群，图形化检验可以表达复杂的检验路径。但越复杂，越需要在Statistical Analysis Plan（SAP，统计分析计划）中清楚预设。
+
+## Adaptive Design中的多重性
+
+Adaptive Design（适应性设计）可能包括样本量重估、无效性早停、疗效早停、治疗臂删除、人群富集。每一次看数据都可能影响错误率。Reviewer会关注：适应性规则是否预设、是否有独立DMC、是否保持盲态、是否调整alpha、是否避免操作偏倚。
+
+## ADC和IO联合开发中的多重性风险
+
+ADC+IO研究常希望同时证明多个故事：总体人群有效、PD-L1阳性更有效、TROP2高表达更有效、PFS改善、OS改善、安全可管理、QoL不下降。如果没有清楚的统计层级，最后容易出现“到处都有信号，但没有一个能支撑标签”的局面。
+
+## FDA/NMPA Reviewer会怎么看
+
+Reviewer不会因为结果有趣就忽略多重性。FDA常问：该终点是否预设？是否受alpha保护？是否有独立评审？是否有敏感性分析支持？NMPA会进一步看中国亚组是否在统计设计中有解释位置，不能只在提交时临时补一张森林图。
+
+## CRP实战Checklist
+
+| 问题 | CRP判断 |
+|---|---|
+| 主要终点是什么 | 是否真正回答注册问题 |
+| 关键次要终点有哪些 | 是否受alpha控制 |
+| OS是否在层级中 | 能否正式宣称OS获益 |
+| 亚组是否预设 | 能否支持限制适应证 |
+| 期中分析是否计划 | 是否有alpha消耗 |
+| ORR/DoR是否探索性 | 医学沟通能说到什么程度 |
+| 中国亚组如何解释 | 是否支持NMPA外推 |
+
+## 面试问法
+
+**问题：PFS未显著，但OS名义P值显著，能否说研究成功？**  
+优秀答案：要看统计层级。如果OS在PFS之后，且PFS失败导致层级中断，OS即使名义P值显著，也通常不能宣称正式统计阳性，只能作为描述性或支持性结果。CRP需要同时解释统计限制和医学意义。
+
+**问题：固定序贯检验的优缺点是什么？**  
+优秀答案：优点是控制一类错误清楚，适合主要和关键次要终点有明确优先级的注册研究；缺点是前序终点失败会阻断后续终点，可能使有临床意义的结果失去正式统计解释。
+
+## 与其他模块交叉链接
+
+[[随机对照试验 RCT]]、[[样本量与 Power]]、[[Reviewer Mind / Think Like FDA-NMPA]]、[[KEYNOTE-355 深度拆解]]、[[ASCENT 深度拆解]]、[[Medical Strategy Core]]
