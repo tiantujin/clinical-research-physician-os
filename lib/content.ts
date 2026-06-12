@@ -936,6 +936,65 @@ const medicalAffairsPlaybookCards: KnowledgeCard[] = [
   }
 ];
 
+const competitiveIntelligenceCards: KnowledgeCard[] = [
+  {
+    id: "adc-competitive-intelligence",
+    title: "ADC Competitive Intelligence",
+    summary: "全球ADC竞争情报：按靶点、payload、DAR、linker、适应症、研究、毒性和商业化做横向比较。",
+    tags: ["Competitive Intelligence", "ADC", "TNBC", "Strategy"],
+    links: ["adc-development-map", "tnbc-treatment-evolution", "bl-b01d1-intelligence-hub", "medical-strategy-core"],
+    body: `
+## 学习目标
+- 建立TNBC、HER2-low、Post-IO、肺癌、胃癌ADC横向竞争判断。
+- 能把SG、T-DXd、Dato-DXd、Patritumab-DXd、BL-B01D1等放在同一张战略图里比较。
+`
+  },
+  {
+    id: "tnbc-treatment-evolution",
+    title: "TNBC Treatment Evolution",
+    summary: "从化疗时代、PD-1时代、ADC时代、ADC+IO时代、Post-IO时代到未来时代的横向演进。",
+    tags: ["TNBC", "Treatment Evolution", "ADC", "IO"],
+    links: ["tnbc-landscape", "keynote-355-deep-dive", "ascent-deep-dive", "adc-competitive-intelligence"],
+    body: `
+## 学习目标
+- 分析TNBC关键研究为什么这样设计、为什么成功或受挫、如何影响未来策略。
+`
+  },
+  {
+    id: "bl-b01d1-intelligence-hub",
+    title: "BL-B01D1 Intelligence Hub",
+    summary: "BL-B01D1专项：EGFR/HER3双靶ADC逻辑、payload/DAR、竞争比较、风险和五年路线图。",
+    tags: ["BL-B01D1", "EGFR", "HER3", "ADC", "Medical Director"],
+    links: ["adc-competitive-intelligence", "medical-director-blb01d1", "approval-intelligence-database"],
+    body: `
+## 学习目标
+- 从医学总监视角判断BL-B01D1的适应症优先级、全球化路径、RWE/IIT和license-out策略。
+`
+  },
+  {
+    id: "medical-director-blb01d1",
+    title: "Think Like Medical Director: BL-B01D1",
+    summary: "如果你是百利天恒医学总监，如何设计BL-B01D1上市前、上市后、适应症拓展和全球化策略。",
+    tags: ["Medical Director", "BL-B01D1", "Strategy", "License-out"],
+    links: ["bl-b01d1-intelligence-hub", "medical-strategy-core", "evidence-generation-strategy"],
+    body: `
+## 学习目标
+- 训练从产品证据、竞品、审评、商业化、KOL和全球合作角度制定医学战略。
+`
+  },
+  {
+    id: "approval-intelligence-database",
+    title: "Approval Intelligence Database",
+    summary: "FDA/NMPA/EMA审批情报：批准、拒绝、补数据、CRL、ODAC反对的真实逻辑训练。",
+    tags: ["Approval Intelligence", "FDA", "NMPA", "EMA", "ODAC", "CRL"],
+    links: ["reviewer-benefit-risk", "think-like-fda", "think-like-nmpa", "adc-competitive-intelligence"],
+    body: `
+## 学习目标
+- 不背法规条文，而是训练Sponsor逻辑和Reviewer逻辑之间的差距。
+`
+  }
+];
+
 const commonInterview = `
 ## 面试高频问法
 - 你如何把医学判断转化为方案设计建议？
@@ -2804,22 +2863,29 @@ export const modules: Module[] = [
     cards: sourceCards("medical-strategy", "evidence-generation", "lifecycle-management")
   },
   {
-    id: "reviewer-mind",
+    id: "competitive-intelligence-center",
     number: "06",
+    title: "Competitive Intelligence Center",
+    description: "竞争情报中心：ADC、TNBC、BL-B01D1、审批逻辑和医学总监战略模拟的横向比较系统。",
+    cards: competitiveIntelligenceCards
+  },
+  {
+    id: "reviewer-mind",
+    number: "07",
     title: "Reviewer Mind",
     description: "审评员思维：Benefit-Risk、FDA/NMPA/EMA批准逻辑、ODAC/CRL案例和真实失败案例。",
     cards: sourceCards("reviewer-mind", "cases")
   },
   {
     id: "oncology-innovation-hub",
-    number: "07",
+    number: "08",
     title: "Oncology Innovation Hub",
     description: "肿瘤创新中心：TNBC、ADC、IO、HER2-low、Post-IO、Post-ADC和乳腺癌资产策略。",
     cards: sourceCards("oncology", "oncology-landscape")
   },
   {
     id: "career-transition-center",
-    number: "08",
+    number: "09",
     title: "Career Transition Center",
     description: "职业转型中心：学习路径、CRP/MA面试、Portfolio、个人知识库和未来AI占位入口。",
     cards: sourceCards("learning-paths", "interview", "medical-affairs-interview", "my-crp-portfolio", "personal", "future-ai-extension")
@@ -2868,8 +2934,8 @@ export const learningPaths = [
   },
   {
     id: "strategy-leadership",
-    title: "Strategy → Leadership",
-    description: "面向Medical Director：整合Reviewer Mind、Oncology Innovation、Portfolio和跨职能领导力。",
-    cards: ["reviewer-benefit-risk", "think-like-fda", "think-like-nmpa", "path-medical-director", "portfolio-我的职业转型记录"]
+    title: "Strategy → Competitive Intelligence → Leadership",
+    description: "面向Medical Director：整合竞争格局、Reviewer Mind、Oncology Innovation、Portfolio和跨职能领导力。",
+    cards: ["adc-competitive-intelligence", "bl-b01d1-intelligence-hub", "approval-intelligence-database", "reviewer-benefit-risk", "path-medical-director"]
   }
 ];
