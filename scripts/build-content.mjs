@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const roots = ["content/regulations", "content/drug-development", "content/reviewer-academy", "content/medical-affairs", "content/trial-design"];
+const roots = ["content/regulations", "content/drug-development", "content/reviewer-academy", "content/medical-affairs", "content/trial-design", "content/competitive-intelligence"];
 const output = "lib/generatedMdxContent.ts";
 
 function walk(dir) {
