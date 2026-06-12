@@ -948,7 +948,7 @@ const commonInterview = `
 - 最后把医学判断写入 protocol、SAP、IB、CSR 或安全性评估。
 `;
 
-export const modules: Module[] = [
+const sourceModules: Module[] = [
   {
     id: "drug-dev",
     number: "01",
@@ -2757,44 +2757,119 @@ ${commonInterview}
   }
 ];
 
+function sourceModule(id: string) {
+  const module = sourceModules.find((item) => item.id === id);
+  if (!module) throw new Error(`Missing source module: ${id}`);
+  return module;
+}
+
+function sourceCards(...ids: string[]) {
+  return ids.flatMap((id) => sourceModule(id).cards);
+}
+
+export const modules: Module[] = [
+  {
+    id: "foundation",
+    number: "01",
+    title: "Foundation",
+    description: "建立法规、GCP、统计、PV、术语和快速查询基础，是进入Clinical Development与Medical Affairs的底层能力。",
+    cards: sourceCards("regulatory", "ich", "regulatory-reference-library", "statistics", "pv", "medical-english", "lookup")
+  },
+  {
+    id: "clinical-development",
+    number: "02",
+    title: "Clinical Development",
+    description: "从药物发现到注册研究，训练Trial Design、Protocol Intelligence、Sponsor决策和开发阶段判断。",
+    cards: sourceCards("drug-dev", "trial-design", "sponsor-decision", "protocol-dissection")
+  },
+  {
+    id: "clinical-research-physician",
+    number: "03",
+    title: "Clinical Research Physician",
+    description: "CRP核心操作系统：Protocol Review、Medical Monitoring、Safety/Data Review、医学写作和临床开发模板。",
+    cards: sourceCards("crp-handbook", "medical-writing-library", "clinical-development-toolkit")
+  },
+  {
+    id: "medical-affairs-academy",
+    number: "04",
+    title: "Medical Affairs Academy",
+    description: "医学部学院：KOL Engagement、Medical Communication、Medical Playbook、医学教育和合规边界。",
+    cards: sourceCards("kol-engagement", "medical-communication", "medical-affairs-playbook")
+  },
+  {
+    id: "medical-strategy",
+    number: "05",
+    title: "Medical Strategy",
+    description: "医学策略：连接Evidence Generation、Lifecycle Management、Launch Readiness、RWE/IIT和竞争格局。",
+    cards: sourceCards("medical-strategy", "evidence-generation", "lifecycle-management")
+  },
+  {
+    id: "reviewer-mind",
+    number: "06",
+    title: "Reviewer Mind",
+    description: "审评员思维：Benefit-Risk、FDA/NMPA/EMA批准逻辑、ODAC/CRL案例和真实失败案例。",
+    cards: sourceCards("reviewer-mind", "cases")
+  },
+  {
+    id: "oncology-innovation-hub",
+    number: "07",
+    title: "Oncology Innovation Hub",
+    description: "肿瘤创新中心：TNBC、ADC、IO、HER2-low、Post-IO、Post-ADC和乳腺癌资产策略。",
+    cards: sourceCards("oncology", "oncology-landscape")
+  },
+  {
+    id: "career-transition-center",
+    number: "08",
+    title: "Career Transition Center",
+    description: "职业转型中心：学习路径、CRP/MA面试、Portfolio、个人知识库和未来AI占位入口。",
+    cards: sourceCards("learning-paths", "interview", "medical-affairs-interview", "my-crp-portfolio", "personal", "future-ai-extension")
+  }
+];
+
 export const glossary = [
-  { term: "AE", definition: "任何不利医学事件", moduleId: "pv", cardId: "ae-sae" },
-  { term: "SAE", definition: "满足严重性标准的不良事件", moduleId: "pv", cardId: "sae" },
-  { term: "ITT", definition: "按随机分组分析", moduleId: "statistics", cardId: "analysis-sets" },
-  { term: "PP", definition: "符合方案人群分析", moduleId: "statistics", cardId: "analysis-sets" },
-  { term: "HR", definition: "风险比", moduleId: "lookup", cardId: "hr" },
-  { term: "ORR", definition: "客观缓解率", moduleId: "lookup", cardId: "orr" },
-  { term: "PFS", definition: "无进展生存期", moduleId: "lookup", cardId: "pfs-os" },
-  { term: "OS", definition: "总生存期", moduleId: "lookup", cardId: "pfs-os" },
-  { term: "EOT", definition: "治疗结束", moduleId: "lookup", cardId: "eot-eos" },
-  { term: "EOS", definition: "研究结束", moduleId: "lookup", cardId: "eot-eos" },
-  { term: "SUSAR", definition: "可疑且非预期严重不良反应", moduleId: "medical-english", cardId: "safety-terms" },
-  { term: "DMC", definition: "数据监查委员会", moduleId: "medical-english", cardId: "safety-terms" }
+  { term: "AE", definition: "任何不利医学事件", moduleId: "foundation", cardId: "ae-sae" },
+  { term: "SAE", definition: "满足严重性标准的不良事件", moduleId: "foundation", cardId: "sae" },
+  { term: "ITT", definition: "按随机分组分析", moduleId: "foundation", cardId: "analysis-sets" },
+  { term: "PP", definition: "符合方案人群分析", moduleId: "foundation", cardId: "analysis-sets" },
+  { term: "HR", definition: "风险比", moduleId: "foundation", cardId: "hr" },
+  { term: "ORR", definition: "客观缓解率", moduleId: "foundation", cardId: "orr" },
+  { term: "PFS", definition: "无进展生存期", moduleId: "foundation", cardId: "pfs-os" },
+  { term: "OS", definition: "总生存期", moduleId: "foundation", cardId: "pfs-os" },
+  { term: "EOT", definition: "治疗结束", moduleId: "foundation", cardId: "eot-eos" },
+  { term: "EOS", definition: "研究结束", moduleId: "foundation", cardId: "eot-eos" },
+  { term: "SUSAR", definition: "可疑且非预期严重不良反应", moduleId: "foundation", cardId: "safety-terms" },
+  { term: "DMC", definition: "数据监查委员会", moduleId: "foundation", cardId: "safety-terms" }
 ];
 
 export const learningPaths = [
   {
-    id: "doctor-crp",
-    title: "临床医生 → CRP",
-    description: "先建立研发全景和 GCP，再训练方案、安全、统计和面试表达。",
-    cards: ["drug-lifecycle", "ich-e6-r3", "ae-sae", "protocol-review", "analysis-sets", "why-pharma"]
+    id: "foundation-development",
+    title: "Foundation → Clinical Development",
+    description: "先建立法规、统计、PV和研发全景，再进入方案设计、Protocol拆解和Sponsor决策。",
+    cards: ["ich-e6-r3", "analysis-sets", "ae-sae", "drug-lifecycle", "fixed-sequence-multiplicity", "sponsor-decision-framework"]
   },
   {
-    id: "cra-crp",
-    title: "CRA → CRP",
-    description: "把中心执行经验升级为医学判断、数据解释和研究设计能力。",
-    cards: ["ich-e6-r3", "medical-monitor", "data-review", "endpoint-evaluation", "phase-iii-interview"]
+    id: "development-crp",
+    title: "Clinical Development → CRP",
+    description: "把开发设计能力落到CRP日常工作：医学监查、安全审阅、数据审阅、医学写作和中心沟通。",
+    cards: ["protocol-review", "medical-monitor", "safety-review", "data-review", "medical-input-csr", "medical-writing-clinical-study-protocol"]
   },
   {
-    id: "medical-manager",
-    title: "医学经理",
-    description: "聚焦证据沟通、KOL协作、医学培训和产品策略。",
-    cards: ["kol-communication", "oncology-dev", "core-documents", "tnbc", "why-pharma"]
+    id: "crp-medical-affairs",
+    title: "CRP → Medical Affairs",
+    description: "把Protocol、Safety和Data能力升级为KOL、医学沟通、医学教育和合规科学交流能力。",
+    cards: ["medical-affairs-playbook", "kol-engagement-strategy", "medical-communication-platform", "medical-training", "medical-affairs-interview"]
   },
   {
-    id: "medical-director",
-    title: "医学总监",
-    description: "训练资产策略、获益风险、法规沟通和跨团队决策。",
-    cards: ["phase-transition", "global-regulatory", "case-safety", "accelerated-pathways", "path-medical-director"]
+    id: "medical-affairs-strategy",
+    title: "Medical Affairs → Strategy",
+    description: "进一步训练医学策略、证据生成、生命周期管理、Launch Readiness和竞争格局判断。",
+    cards: ["medical-strategy-core", "evidence-generation-strategy", "lifecycle-launch-readiness", "tnbc-landscape", "adc-development-map"]
+  },
+  {
+    id: "strategy-leadership",
+    title: "Strategy → Leadership",
+    description: "面向Medical Director：整合Reviewer Mind、Oncology Innovation、Portfolio和跨职能领导力。",
+    cards: ["reviewer-benefit-risk", "think-like-fda", "think-like-nmpa", "path-medical-director", "portfolio-我的职业转型记录"]
   }
 ];
