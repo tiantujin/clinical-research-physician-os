@@ -100,7 +100,9 @@ export default function Home() {
   const wrongCount = Object.values(wrongQuestions).filter(Boolean).length;
 
   function selectCard(moduleId: string, cardId: string) {
-    setActiveModuleId(moduleId);
+    const resolvedModule = modules.find((module) => module.id === moduleId && module.cards.some((card) => card.id === cardId))
+      ?? modules.find((module) => module.cards.some((card) => card.id === cardId));
+    setActiveModuleId(resolvedModule?.id ?? moduleId);
     setActiveCardId(cardId);
     recordVisit(cardId);
     setSidebarOpen(false);
@@ -291,11 +293,11 @@ export default function Home() {
                   </div>
                 </div>
 
-                {activeModule.id === "drug-dev" && <DrugDevelopmentFlow />}
-                {activeModule.id === "regulatory" && <RegulatoryTable />}
-                {activeModule.id === "trial-design" && <TrialDesignGallery />}
-                {activeModule.id === "statistics" && <StatsVisual />}
-                {activeModule.id === "learning-paths" && <LearningPathPanel progress={progress} />}
+                {activeModule.id === "clinical-development" && <DrugDevelopmentFlow />}
+                {activeModule.id === "foundation" && <RegulatoryTable />}
+                {activeModule.id === "clinical-development" && <TrialDesignGallery />}
+                {activeModule.id === "foundation" && activeCard.tags.some((tag) => ["ITT", "PP", "Power", "HR"].includes(tag)) && <StatsVisual />}
+                {activeModule.id === "career-transition-center" && <LearningPathPanel progress={progress} />}
 
                 <MarkdownView body={activeDeepBody} onNavigate={selectCard} />
                 <QuizBlock questions={quizzes[activeCard.id] ?? []} quizAnswers={quizAnswers} onAnswer={answerQuiz} />
@@ -457,11 +459,11 @@ function LearningDashboard({
           <h3 className="pt-2 font-bold text-clinical-ink">快速入口</h3>
           <div className="grid grid-cols-2 gap-2">
             {[
-              ["今天学一个概念", "ich", "ich-e6-r3"],
-              ["今天拆一个Protocol", "protocol-dissection", "keynote-355-deep-dive"],
-              ["今天做一道面试题", "interview", "crp-interview-20"],
-              ["今天看一个Safety Case", "pv", "ae-sae"],
-              ["今天更新Portfolio", "my-crp-portfolio", "portfolio-我的职业转型记录"]
+              ["今天学一个概念", "foundation", "ich-e6-r3"],
+              ["今天拆一个Protocol", "clinical-development", "keynote-355-deep-dive"],
+              ["今天做一道面试题", "career-transition-center", "crp-interview-20"],
+              ["今天看一个Safety Case", "foundation", "ae-sae"],
+              ["今天更新Portfolio", "career-transition-center", "portfolio-我的职业转型记录"]
             ].map(([label, moduleId, cardId]) => (
               <button key={label} className="rounded-md bg-white p-3 text-left text-sm font-bold text-clinical-blue ring-1 ring-slate-200 hover:bg-clinical-sky" onClick={() => onNavigate(moduleId, cardId)}>
                 {label}
@@ -471,7 +473,7 @@ function LearningDashboard({
         </div>
 
         <div>
-          <h3 className="mb-3 font-bold text-clinical-ink">临床医生转CRP 12周学习路线</h3>
+          <h3 className="mb-3 font-bold text-clinical-ink">CDMA-OS 能力成长路线</h3>
           <div className="crp-scrollbar max-h-[420px] space-y-2 overflow-y-auto pr-1">
             {twelveWeekPlan.map((week) => (
               <div key={week.week} className="rounded-md border border-slate-200 bg-slate-50 p-3">
