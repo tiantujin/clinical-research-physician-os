@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Clinical Research Physician OS",
-  description: "A structured learning system for physicians transitioning into pharma medical roles."
+  title: "Clinical Development & Medical Affairs OS",
+  description: "A structured learning system for physicians transitioning into clinical development and medical affairs roles."
 };
 
 export const viewport: Viewport = {
