@@ -995,6 +995,86 @@ const competitiveIntelligenceCards: KnowledgeCard[] = [
   }
 ];
 
+const careerIntelligenceCards: KnowledgeCard[] = [
+  {
+    id: "career-navigator",
+    title: "Career Navigator",
+    summary: "职业决策树：判断CRP、MA、MSL、PV、Clinical Scientist、Medical Director哪个更适合自己。",
+    tags: ["Career Intelligence", "Navigator", "Decision Tree"],
+    links: ["career-match-assessment", "gap-analysis-engine", "medical-affairs-interview"],
+    body: `
+## 学习目标
+- 从岗位名称转向岗位匹配：适合什么人、不适合什么人、成长空间和AI替代风险。
+`
+  },
+  {
+    id: "role-deep-dive",
+    title: "Role Deep Dive",
+    summary: "真实一天工作内容：MA、CRP、MSL、PV、Clinical Scientist、Medical Director的工作节奏。",
+    tags: ["Role Deep Dive", "Career", "Day in Life"],
+    links: ["career-navigator", "medical-affairs-playbook", "crp-handbook"],
+    body: `
+## 学习目标
+- 看清岗位真实日程，而不是只看JD里的职责描述。
+`
+  },
+  {
+    id: "career-match-assessment",
+    title: "Career Match Assessment",
+    summary: "岗位匹配评估：输出匹配度、优势、短板、建议路线和转型周期。",
+    tags: ["Assessment", "Career Match", "Transition"],
+    links: ["career-navigator", "gap-analysis-engine", "personal-strategy"],
+    body: `
+## 学习目标
+- 用能力维度判断自己更适合CRP、MA、MSL、PV、Clinical Scientist还是Medical Director路径。
+`
+  },
+  {
+    id: "gap-analysis-engine",
+    title: "Gap Analysis Engine",
+    summary: "从当前背景到目标岗位：输出已具备能力、缺失能力、优先补齐能力、学习路径和预计周期。",
+    tags: ["Gap Analysis", "Career Strategy", "Breast Oncology"],
+    links: ["career-match-assessment", "bl-b01d1-intelligence-hub", "medical-strategy-core"],
+    body: `
+## 学习目标
+- 以乳腺外科博士后→百利天恒MA为例，训练可执行转型分析。
+`
+  },
+  {
+    id: "interview-intelligence",
+    title: "Interview Intelligence",
+    summary: "面试官真实意图、评分逻辑、优秀回答、错误回答、追问问题和高频陷阱。",
+    tags: ["Interview Intelligence", "Career", "Scoring"],
+    links: ["medical-affairs-interview", "interview-deep-answers", "personal-strategy"],
+    body: `
+## 学习目标
+- 不背答案，而是理解面试官如何评分。
+`
+  },
+  {
+    id: "salary-career-intelligence",
+    title: "Salary & Career Intelligence",
+    summary: "薪资结构、晋升体系、行业周期、岗位稳定性和AI替代风险判断框架。",
+    tags: ["Salary", "Career Intelligence", "AI Risk"],
+    links: ["career-navigator", "personal-strategy"],
+    body: `
+## 学习目标
+- 不追单点薪资数字，而是理解薪资、稳定性和长期职业风险。
+`
+  },
+  {
+    id: "personal-strategy",
+    title: "Personal Strategy",
+    summary: "针对乳腺外科博士后、TNBC方向、ADC兴趣、希望离开医院的5年和10年职业路线图。",
+    tags: ["Personal Strategy", "Career Roadmap", "TNBC", "ADC"],
+    links: ["gap-analysis-engine", "interview-intelligence", "adc-competitive-intelligence"],
+    body: `
+## 学习目标
+- 把个人背景转化为可执行的职业定位、路线图和面试叙事。
+`
+  }
+];
+
 const commonInterview = `
 ## 面试高频问法
 - 你如何把医学判断转化为方案设计建议？
@@ -2886,9 +2966,9 @@ export const modules: Module[] = [
   {
     id: "career-transition-center",
     number: "09",
-    title: "Career Transition Center",
-    description: "职业转型中心：学习路径、CRP/MA面试、Portfolio、个人知识库和未来AI占位入口。",
-    cards: sourceCards("learning-paths", "interview", "medical-affairs-interview", "my-crp-portfolio", "personal", "future-ai-extension")
+    title: "Career Intelligence Center",
+    description: "职业情报中心：职业决策树、岗位匹配、Gap Analysis、面试评分逻辑、薪资/风险和个人战略。",
+    cards: [...careerIntelligenceCards, ...sourceCards("learning-paths", "interview", "medical-affairs-interview", "my-crp-portfolio", "personal", "future-ai-extension")]
   }
 ];
 
